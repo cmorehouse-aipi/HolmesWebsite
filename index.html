@@ -113,11 +113,11 @@ body{
 (function(){
   // ── Access credentials ───────────────────────────────────────────────
   // NOTE: this is a client-side gate only — credentials are visible in the
-  // page source and anyone can open Holmes-Site.html directly. It deters
+  // page source and anyone can open site/index.html directly. It deters
   // casual visitors but is NOT real security. Change the values below.
   // For genuine protection, gate access with a server (see deploy notes).
   var ACCESS = { user: "holmes", pass: "holmes2026" };
-  var REDIRECT = "Holmes-Site.html";
+  var REDIRECT = "site/index.html";
   // ─────────────────────────────────────────────────────────────────────
 
   var gate    = document.querySelector(".gate");
