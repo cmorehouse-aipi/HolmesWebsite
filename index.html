@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HolmesAI</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='8' y='8' width='16' height='16' transform='rotate(45 16 16)' fill='%23000099'/%3E%3C/svg%3E">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:"Sohne",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:#EBEBFA;min-height:100vh;display:flex;align-items:center;justify-content:center;
+  -webkit-font-smoothing:antialiased;
+}
+.inner{text-align:center;padding:24px}
+.mark{width:min(280px,56vw);height:min(280px,56vw);margin:0 auto}
+.mark svg{display:block;width:100%;height:100%;fill:#000099}
+
+/* breathing animation — slowed from 3.6s to 5.4s */
+.mark rect{animation:node 5.4s ease-in-out infinite}
+/* snake: TL > TM > TR > MR > MC > ML > BL > BM > BR */
+.mark rect:nth-child(1){animation-delay:0s}
+.mark rect:nth-child(2){animation-delay:.6s}
+.mark rect:nth-child(3){animation-delay:1.2s}
+.mark rect:nth-child(6){animation-delay:1.8s}
+.mark rect:nth-child(5){animation-delay:2.4s}
+.mark rect:nth-child(4){animation-delay:3.0s}
+.mark rect:nth-child(7){animation-delay:3.6s}
+.mark rect:nth-child(8){animation-delay:4.2s}
+.mark rect:nth-child(9){animation-delay:4.8s}
+.mark rect:nth-child(n+10){animation:none;opacity:1}
+@keyframes node{0%,20%,100%{opacity:1}10%{opacity:.25}}
+
+/* gate: holds either the access button or the credentials form */
+.gate{margin-top:64px;min-height:2.6em;display:flex;align-items:center;justify-content:center}
+
+/* shared muted-uppercase typographic style, same font as the page */
+.enter,.cred input,.cred button{
+  font-family:inherit;font-weight:700;font-size:clamp(.95rem,2.4vw,1.35rem);
+  letter-spacing:.18em;text-transform:uppercase;
+}
+
+.enter{
+  background:none;border:0;cursor:pointer;color:#8A8F9C;
+  padding:6px 4px;transition:color .35s ease;
+  animation:breathe 5.4s ease-in-out infinite;
+}
+.enter:hover,.enter:focus-visible{color:#000099;animation-play-state:paused;outline:none}
+@keyframes breathe{0%,100%{opacity:1}50%{opacity:.45}}
+
+/* credentials form, hidden until the button is pressed */
+.cred{display:none;flex-direction:column;align-items:center;gap:18px;width:min(360px,82vw)}
+.cred.show{display:flex;animation:rise .4s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.cred input{
+  width:100%;text-align:center;color:#000099;background:transparent;
+  border:0;border-bottom:1.5px solid #C3C3E6;padding:10px 6px;
+  font-size:.95rem;letter-spacing:.12em;text-transform:none;
+  transition:border-color .25s ease;
+}
+.cred input::placeholder{color:#8A8F9C;text-transform:uppercase;letter-spacing:.18em;font-weight:700;font-size:.8rem}
+.cred input:focus{outline:none;border-bottom-color:#000099}
+.cred button{
+  margin-top:6px;cursor:pointer;color:#EBEBFA;background:#000099;border:0;
+  padding:12px 28px;border-radius:999px;font-size:.85rem;
+  transition:opacity .25s ease,transform .25s ease;
+}
+.cred button:hover,.cred button:focus-visible{opacity:.86;outline:none}
+.cred button:active{transform:translateY(1px)}
+.err{min-height:1.2em;color:#9A2A2A;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;opacity:0;transition:opacity .2s ease}
+.err.show{opacity:1}
+.cred.shake{animation:shake .4s ease}
+@keyframes shake{10%,90%{transform:translateX(-2px)}30%,70%{transform:translateX(4px)}50%{transform:translateX(-4px)}}
+
+@media(prefers-reduced-motion:reduce){.mark rect,.enter,.cred,.cred.shake,.gate.shake{animation:none}}
+</style>
+</head>
+<body>
+  <div class="inner">
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 553.74 553.74"><g>
+        <rect x="18.54" y="18.54" width="89.53" height="89.53" transform="translate(63.31 -26.22) rotate(45)"/>
+        <rect x="232.1" y="18.54" width="89.53" height="89.53" transform="translate(125.86 -177.23) rotate(45)"/>
+        <rect x="445.66" y="18.54" width="89.53" height="89.53" transform="translate(188.41 -328.24) rotate(45)"/>
+        <rect x="18.54" y="232.1" width="89.53" height="89.53" transform="translate(214.32 36.33) rotate(45)"/>
+        <rect x="232.1" y="232.1" width="89.53" height="89.53" transform="translate(276.87 -114.68) rotate(45)"/>
+        <rect x="445.66" y="232.1" width="89.53" height="89.53" transform="translate(339.42 -265.69) rotate(45)"/>
+        <rect x="18.54" y="445.66" width="89.53" height="89.53" transform="translate(365.33 98.88) rotate(45)"/>
+        <rect x="232.1" y="445.66" width="89.53" height="89.53" transform="translate(427.88 -52.13) rotate(45)"/>
+        <rect x="445.66" y="445.66" width="89.53" height="89.53" transform="translate(490.43 -203.14) rotate(45)"/>
+        <rect x="53.87" y="117.18" width="18.88" height="105.82"/>
+        <rect x="53.87" y="330.74" width="18.88" height="105.82"/>
+        <rect x="480.99" y="117.18" width="18.88" height="105.82"/>
+        <rect x="480.99" y="330.74" width="18.88" height="105.82"/>
+        <rect x="117.18" y="267.43" width="105.82" height="18.88"/>
+        <rect x="330.74" y="267.43" width="105.82" height="18.88"/>
+      </g></svg>
+    </div>
+
+    <div class="gate">
+      <button class="enter" id="enterBtn" type="button" aria-expanded="false" aria-controls="credForm">Enter Access Credentials</button>
+
+      <form class="cred" id="credForm" novalidate aria-label="Access credentials — press Escape to cancel">
+        <input id="user" name="username" type="text" placeholder="Username" autocomplete="username" autocapitalize="none" spellcheck="false" aria-label="Username">
+        <input id="pass" name="password" type="password" placeholder="Password" autocomplete="current-password" aria-label="Password">
+        <button type="submit">Enter</button>
+        <div class="err" id="err" role="alert" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+<script>
+(function(){
+  // ── Access credentials ───────────────────────────────────────────────
+  // NOTE: this is a client-side gate only — credentials are visible in the
+  // page source and anyone can open Holmes-Site.html directly. It deters
+  // casual visitors but is NOT real security. Change the values below.
+  // For genuine protection, gate access with a server (see deploy notes).
+  var ACCESS = { user: "holmes", pass: "holmes2026" };
+  var REDIRECT = "Holmes-Site.html";
+  // ─────────────────────────────────────────────────────────────────────
+
+  var gate    = document.querySelector(".gate");
+  var enterBtn= document.getElementById("enterBtn");
+  var form    = document.getElementById("credForm");
+  var userIn  = document.getElementById("user");
+  var passIn  = document.getElementById("pass");
+  var errBox  = document.getElementById("err");
+
+  function openForm(){
+    enterBtn.style.display = "none";
+    enterBtn.setAttribute("aria-expanded","true");
+    form.classList.add("show");
+    userIn.focus();
+  }
+
+  function closeForm(){
+    form.classList.remove("show");
+    enterBtn.style.display = "";
+    enterBtn.setAttribute("aria-expanded","false");
+    clearError();
+    enterBtn.focus();
+  }
+
+  function clearError(){ errBox.textContent = ""; errBox.classList.remove("show"); }
+
+  function showError(msg){
+    errBox.textContent = msg;
+    errBox.classList.add("show");
+    gate.classList.remove("shake");
+    void gate.offsetWidth;          // reflow so the shake re-triggers
+    gate.classList.add("shake");
+    passIn.value = "";
+    passIn.focus();
+  }
+
+  enterBtn.addEventListener("click", openForm);
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var u = userIn.value.trim();
+    var p = passIn.value.trim();
+    if (u === ACCESS.user && p === ACCESS.pass){
+      try { sessionStorage.setItem("holmes_access","1"); } catch(_) {}
+      window.location.href = REDIRECT;
+    } else {
+      showError("Invalid credentials");
+    }
+  });
+
+  // Escape collapses the form back to the button (only while it is open)
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" && form.classList.contains("show")) closeForm();
+  });
+})();
+</script>
+</body>
+</html>
