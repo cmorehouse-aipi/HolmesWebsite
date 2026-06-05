@@ -67,6 +67,7 @@ body{
 }
 .cred button:hover,.cred button:focus-visible{opacity:.86;outline:none}
 .cred button:active{transform:translateY(1px)}
+.cred button:disabled{opacity:.55;cursor:default}
 .err{min-height:1.2em;color:#9A2A2A;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;opacity:0;transition:opacity .2s ease}
 .err.show{opacity:1}
 .cred.shake{animation:shake .4s ease}
@@ -111,21 +112,21 @@ body{
 
 <script>
 (function(){
-  // ── Access credentials ───────────────────────────────────────────────
-  // NOTE: this is a client-side gate only — credentials are visible in the
-  // page source and anyone can open site/index.html directly. It deters
-  // casual visitors but is NOT real security. Change the values below.
-  // For genuine protection, gate access with a server (see deploy notes).
-  var ACCESS = { user: "holmes", pass: "holmes2026" };
+  // Server-side credential gate. The form posts to /api/login, which checks
+  // credentials against Vercel environment variables and (on success) sets a
+  // signed, HttpOnly cookie. Edge middleware (middleware.js) then guards
+  // /site/* — the main page is unreachable without a valid cookie, even via a
+  // direct URL. No password appears anywhere in this page's source.
   var REDIRECT = "site/index.html";
-  // ─────────────────────────────────────────────────────────────────────
 
-  var gate    = document.querySelector(".gate");
-  var enterBtn= document.getElementById("enterBtn");
-  var form    = document.getElementById("credForm");
-  var userIn  = document.getElementById("user");
-  var passIn  = document.getElementById("pass");
-  var errBox  = document.getElementById("err");
+  var gate      = document.querySelector(".gate");
+  var enterBtn  = document.getElementById("enterBtn");
+  var form      = document.getElementById("credForm");
+  var userIn    = document.getElementById("user");
+  var passIn    = document.getElementById("pass");
+  var submitBtn = form.querySelector('button[type="submit"]');
+  var errBox    = document.getElementById("err");
+  var busy = false;
 
   function openForm(){
     enterBtn.style.display = "none";
@@ -156,16 +157,29 @@ body{
 
   enterBtn.addEventListener("click", openForm);
 
-  form.addEventListener("submit", function(e){
+  form.addEventListener("submit", async function(e){
     e.preventDefault();
+    if (busy) return;
     var u = userIn.value.trim();
-    var p = passIn.value.trim();
-    if (u === ACCESS.user && p === ACCESS.pass){
-      try { sessionStorage.setItem("holmes_access","1"); } catch(_) {}
-      window.location.href = REDIRECT;
-    } else {
-      showError("Invalid credentials");
+    var p = passIn.value;                 // do not trim — passwords may contain spaces
+    if (!u || !p){ showError("Enter username and password"); return; }
+
+    busy = true; submitBtn.disabled = true; submitBtn.textContent = "Checking…"; clearError();
+    try {
+      var resp = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: u, password: p })
+      });
+      if (resp.ok){
+        window.location.href = REDIRECT;   // navigate away; leave button disabled
+        return;
+      }
+      showError(resp.status === 401 ? "Invalid credentials" : "Server error — check configuration");
+    } catch (_){
+      showError("Connection error — try again");
     }
+    busy = false; submitBtn.disabled = false; submitBtn.textContent = "Enter";
   });
 
   // Escape collapses the form back to the button (only while it is open)

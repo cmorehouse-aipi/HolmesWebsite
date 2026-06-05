@@ -1,0 +1,9 @@
+{
+  "name": "holmes-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@vercel/edge": "^1.1.1"
+  }
+}

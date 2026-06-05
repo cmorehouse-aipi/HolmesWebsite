@@ -456,12 +456,15 @@ header.nav{
   font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
 
 /* Use-case rows */
-.uc{border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:#fff;margin-bottom:16px}
+.uc{border:1.5px solid var(--blue);border-radius:var(--radius);padding:26px;background:#fff;margin-bottom:16px}
 .uc h3{font-size:1.16rem;margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.uc-tag{font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);
-  background:var(--blue-soft);padding:4px 9px;border-radius:6px}
+.uc-tag{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);
+  background:#fff;border:1.5px solid var(--blue);padding:5px 11px;border-radius:8px}
 .uc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.uc-grid .lbl{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-3);font-weight:600;margin-bottom:5px}
+.uc-grid .lbl{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:5px}
+.uc h3 .go{cursor:pointer}
+.uc h3 .go:hover{color:var(--blue)}
+#page-product .card{border:1.5px solid var(--blue)}
 .uc-grid p{font-size:.92rem;color:var(--gray-2)}
 
 /* Q+A */
@@ -480,7 +483,10 @@ header.nav{
 
 /* Security cards */
 .sec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.sec-card{border:1px solid var(--line);border-radius:var(--radius);padding:24px;background:#fff}
+.sec-card{border:1.5px solid var(--blue);border-radius:var(--radius);padding:24px;background:#fff}
+.sec-group{font-size:1.05rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--blue);margin:38px 0 16px}
+.sec-card .pipe{display:inline-block;font-size:.64rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--blue);border:1.5px solid var(--blue);border-radius:6px;padding:3px 8px;margin-bottom:10px}
 .sec-card h3{font-size:1.05rem;margin-bottom:8px}
 .sec-card p{font-size:.92rem;color:var(--gray-2)}
 .todo{display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:.04em;color:#9a7100;
@@ -493,7 +499,7 @@ header.nav{
 .team-card{border:1px solid var(--line);border-radius:var(--radius);background:#fff;padding:28px 24px;text-align:center}
 .team-card:hover{border-color:var(--blue);background:#fcfdff}
 .team-avatar{width:124px;height:124px;border-radius:50%;object-fit:cover;margin:0 auto 18px;
-  display:block;border:3px solid var(--blue-soft);box-shadow:0 6px 18px -10px rgba(20,30,60,.4)}
+  display:block;border:3px solid var(--blue-soft);box-shadow:0 6px 18px -10px rgba(20,30,60,.4);filter:grayscale(1)}
 .team-card .tname{font-size:1.18rem;font-weight:600}
 .team-card .trole{font-size:.85rem;color:var(--blue);font-weight:600;margin:5px 0 14px}
 .team-card .tbio{font-size:.9rem;color:var(--gray-2);line-height:1.58;text-align:left}
@@ -671,23 +677,23 @@ footer{background:var(--bg-2);border-top:1px solid var(--line);padding:54px 0 30
   padding:3px 7px;border-radius:999px;white-space:nowrap;border:1px solid transparent;letter-spacing:.01em;
   opacity:0;transition:opacity .5s ease}
 .tmap.in .pill{opacity:1}
-.tmap .pill.hi{background:rgba(248,113,113,.16);border-color:rgba(248,113,113,.6);color:#fda4a4;z-index:3}
-.tmap .pill.md{background:rgba(251,191,90,.10);border-color:rgba(251,191,90,.28);color:#d6b878;z-index:2}
+.tmap .pill.hi{background:rgba(140,140,255,.16);border-color:rgba(140,140,255,.6);color:#b3b3ff;z-index:3}
+.tmap .pill.md{background:rgba(140,140,255,.08);border-color:rgba(140,140,255,.26);color:#8a8ad0;z-index:2}
 .tmap .pill.lo{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08);color:#6c7587;z-index:1}
-.tpanel{flex:1;min-width:190px;background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.32);
+.tpanel{flex:1;min-width:190px;background:rgba(140,140,255,.06);border:1px solid rgba(140,140,255,.32);
   border-radius:12px;padding:15px 16px}
 .tpanel .pin{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
-.tpanel .pin .lbl{font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;color:#f87171;font-weight:700}
+.tpanel .pin .lbl{font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;color:#b3b3ff;font-weight:700}
 .tpanel .pin .pinned{font-size:.6rem;color:#fda4a4;border:1px solid rgba(248,113,113,.4);border-radius:999px;padding:2px 8px}
 .tpanel h6{font-size:1.05rem;font-weight:700;color:#fff;margin:2px 0}
 .tpanel .cnt{font-size:.72rem;color:var(--rp-mut);margin-bottom:11px}
 .tpanel ul{list-style:none;margin:0;padding:0}
 .tpanel li{font-size:.74rem;color:#cdd6ec;padding:4px 0 4px 15px;position:relative;line-height:1.3}
-.tpanel li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:#f87171}
+.tpanel li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:#8c8cff}
 
 /* rich competitor card (real format: who/similar/different/patents/products) */
 .compcard{background:var(--rp-panel);border:1px solid var(--rp-line);border-radius:12px;padding:16px;margin-top:14px;
-  border-left:3px solid #f87171}
+  border-left:3px solid #8c8cff}
 .compcard .ch{display:flex;align-items:center;gap:9px;margin-bottom:12px}
 .compcard .clogo{width:26px;height:26px;border-radius:6px;background:#fff;color:#11151f;font-weight:800;font-size:.7rem;
   display:flex;align-items:center;justify-content:center;flex:none}
@@ -1198,8 +1204,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 <div class="page" id="page-product">
   <section class="section">
     <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">Product</div>
+      <div class="section-head sh-plain" data-enh="1">
         <h2>Domain-specific, agentic AI for patents and IP</h2>
         <p class="lead">Agentic AI for patents and intellectual property. Holmes reviews filed patents,
           scientific documents, technical information, and relevant web pages — and returns a structured report.</p>
@@ -1209,35 +1214,33 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
         <div>
           <h3 style="font-size:1.2rem;margin-bottom:14px">Inputs</h3>
           <ul class="why-list" style="grid-template-columns:1fr">
-            <li><span class="ck">·</span>Patent numbers</li>
-            <li><span class="ck">·</span>Relevant IP information</li>
-            <li><span class="ck">·</span>Technical documentation</li>
-            <li><span class="ck">·</span>Scientific material</li>
-            <li><span class="ck">·</span>Web / market context</li>
-            <li><span class="ck">·</span>Customer-provided materials</li>
+            <li><span class="ck" style="background:none;border-radius:0;width:auto;height:24px;display:flex;align-items:center"><svg viewBox="0 0 24 24" width="14" height="14" style="fill:var(--blue)" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span>Patent numbers</li>
+            <li><span class="ck" style="background:none;border-radius:0;width:auto;height:24px;display:flex;align-items:center"><svg viewBox="0 0 24 24" width="14" height="14" style="fill:var(--blue)" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span>Relevant IP information</li>
+            <li><span class="ck" style="background:none;border-radius:0;width:auto;height:24px;display:flex;align-items:center"><svg viewBox="0 0 24 24" width="14" height="14" style="fill:var(--blue)" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span>Technical documentation</li>
+            <li><span class="ck" style="background:none;border-radius:0;width:auto;height:24px;display:flex;align-items:center"><svg viewBox="0 0 24 24" width="14" height="14" style="fill:var(--blue)" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span>Scientific material</li>
+            <li><span class="ck" style="background:none;border-radius:0;width:auto;height:24px;display:flex;align-items:center"><svg viewBox="0 0 24 24" width="14" height="14" style="fill:var(--blue)" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span>Web / market context</li>
+            <li><span class="ck" style="background:none;border-radius:0;width:auto;height:24px;display:flex;align-items:center"><svg viewBox="0 0 24 24" width="14" height="14" style="fill:var(--blue)" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span>Customer-provided materials</li>
           </ul>
         </div>
         <div>
           <h3 style="font-size:1.2rem;margin-bottom:14px">Report outputs</h3>
           <ul class="why-list" style="grid-template-columns:1fr">
-            <li><span class="ck">·</span>Ownership</li>
-            <li><span class="ck">·</span>Threats</li>
-            <li><span class="ck">·</span>Opportunities</li>
-            <li><span class="ck">·</span>Commercialization</li>
-            <li><span class="ck">·</span>Conflict / risk assessment</li>
-            <li><span class="ck">·</span>White-space opportunities</li>
-            <li><span class="ck">·</span>New claims / product development possibilities</li>
+            <li><span class="ck" style="background:none;border-radius:0;width:auto;height:24px;display:flex;align-items:center"><svg viewBox="0 0 24 24" width="14" height="14" style="fill:var(--blue)" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span>Ownership</li>
+            <li><span class="ck" style="background:none;border-radius:0;width:auto;height:24px;display:flex;align-items:center"><svg viewBox="0 0 24 24" width="14" height="14" style="fill:var(--blue)" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span>Threats</li>
+            <li><span class="ck" style="background:none;border-radius:0;width:auto;height:24px;display:flex;align-items:center"><svg viewBox="0 0 24 24" width="14" height="14" style="fill:var(--blue)" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span>Opportunities</li>
+            <li><span class="ck" style="background:none;border-radius:0;width:auto;height:24px;display:flex;align-items:center"><svg viewBox="0 0 24 24" width="14" height="14" style="fill:var(--blue)" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span>Commercialization</li>
+            <li><span class="ck" style="background:none;border-radius:0;width:auto;height:24px;display:flex;align-items:center"><svg viewBox="0 0 24 24" width="14" height="14" style="fill:var(--blue)" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span>Conflict / risk assessment</li>
+            <li><span class="ck" style="background:none;border-radius:0;width:auto;height:24px;display:flex;align-items:center"><svg viewBox="0 0 24 24" width="14" height="14" style="fill:var(--blue)" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span>White-space opportunities</li>
+            <li><span class="ck" style="background:none;border-radius:0;width:auto;height:24px;display:flex;align-items:center"><svg viewBox="0 0 24 24" width="14" height="14" style="fill:var(--blue)" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span>New claims / product development possibilities</li>
           </ul>
         </div>
       </div>
 
-      <h3 style="font-size:1.3rem;margin-bottom:26px">The HolmesAI agent workflow</h3>
-      <div class="workflow" style="grid-template-columns:repeat(5,1fr)">
-        <div class="wf"><div class="wn">1</div><h4>Intake</h4><p>Patents &amp; IP inputs.</p></div>
-        <div class="wf"><div class="wn">2</div><h4>Analyze</h4><p>Patents, scientific documents, technical &amp; web sources.</p></div>
-        <div class="wf"><div class="wn">3</div><h4>Compare</h4><p>Conflicts, overlaps, prior art.</p></div>
-        <div class="wf"><div class="wn">4</div><h4>Assess</h4><p>Risk &amp; opportunity scoring.</p></div>
-        <div class="wf"><div class="wn">5</div><h4>Report</h4><p>Structured deliverable.</p></div>
+      <h3 style="font-size:1.3rem;margin-bottom:26px">The Holmes agent workflow</h3>
+      <div class="flow" style="max-width:880px">
+        <div class="flow-step"><div class="n">STEP 1</div><div class="fl">Input</div><p>Input your patents and IP information.</p></div>
+        <div class="flow-step"><div class="n">STEP 2</div><div class="fl">Analyze</div><p>Reviews and analyzes filed patents, scientific documents, technical information, and relevant web pages.</p></div>
+        <div class="flow-step"><div class="n">STEP 3</div><div class="fl">Report</div><p>Receive a comprehensive and actionable report.</p></div>
       </div>
     </div>
   </section>
@@ -1245,7 +1248,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   <!-- Signature capabilities (real, from product) -->
   <section class="section">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head sh-plain" data-enh="1">
         <div class="eyebrow">What it produces</div>
         <h2>The analysis and visuals behind every report</h2>
         <p class="lead">Beyond the written report, Holmes generates the analysis and visuals that make the
@@ -1268,7 +1271,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   <!-- Engine & accuracy (whitepaper-grounded; no corpus-size claim per Donn) -->
   <section class="section section--alt">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head sh-plain" data-enh="1">
         <div class="eyebrow">Engine &amp; accuracy</div>
         <h2>Grounded, reproducible answers — not a chatbot's guesses</h2>
         <p class="lead">Holmes is a multi-stage retrieval and analysis engine — not a chatbot pointed at a
@@ -1289,7 +1292,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   <!-- Product preview -->
   <section class="section section--alt">
     <div class="wrap">
-      <div class="section-head"><div class="eyebrow">The report</div><h2>An actual HolmesAI report</h2>
+      <div class="section-head sh-plain" data-enh="1"><div class="eyebrow">The report</div><h2>An actual HolmesAI report</h2>
         <p class="lead">This is the actual Holmes report structure — competitor overlap, disclosure analysis with radar charts, an opportunity takeaway, and a filterable reference library. Shown with the PhysicsLogic demo.</p></div>
       <div class="rp" style="max-width:780px">
         <div class="rp-bar"><i></i><i></i><i></i><span class="u">aipitools.com/report</span></div>
@@ -1300,7 +1303,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
             <div class="stamp">H</div>
             <div class="rp-wm"><span class="h">Holmes</span><span class="ai">AI</span></div>
             <div class="tg">Domain-specific AI for patents and IP.</div>
-            <div class="tg tagline">Know the <em>most</em> about your <em>most</em> important assets.</div>
+            <div class="tg tagline">Know the <em>most</em> about your company&#39;s <em>most</em> important assets.</div>
             <hr class="rp-hr">
             <div class="rp-title">
               <div class="rt">PhysicsLogic — Patent &amp; IP Report</div>
@@ -1309,9 +1312,48 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
             <div class="rp-sub">Report details threats, outlines opportunities, and assesses risk.</div>
           </div>
 
+
+          <!-- 06 Opportunities -->
+          <div class="rp-sec">
+            <div class="sh"><span class="nn">03</span><h5>Validity &amp; Patentability — Per-Feature Novelty</h5></div>
+            <div class="rp-panel">
+              <div class="nov-row"><span class="nl">Hardware control plane</span><span class="nb"><i style="--w:88%"></i></span><span class="nv">88</span></div>
+              <div class="nov-row"><span class="nl">Destructive zeroization</span><span class="nb"><i style="--w:81%"></i></span><span class="nv">81</span></div>
+              <div class="nov-row"><span class="nl">Below-firmware attestation</span><span class="nb"><i style="--w:74%"></i></span><span class="nv">74</span></div>
+              <div class="nov-row"><span class="nl">Tamper sensing</span><span class="nb"><i style="--w:52%"></i></span><span class="nv">52</span></div>
+              <div class="rp-callout" style="margin-top:14px">
+                <h6>Takeaway Summary</h6>
+                <p>The clearest differentiator is the relocation of trust enforcement into dedicated silicon logic that
+                  operates below firmware, hypervisor, and OS layers, with hardware attestation controlling whether the
+                  platform powers on. The strongest white space is the fusion of device identity, policy enforcement,
+                  physical isolation, tamper sensing, and destructive zeroization into one hardware-governed control plane.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 05 Threats — Most Relevant Disclosures (radar per patent) -->
+          <div class="rp-sec">
+            <div class="sh"><span class="nn">04</span><h5>Freedom to Operate &amp; Clearance — Most Relevant Disclosures</h5></div>
+            <div class="rp-panel">
+              <div class="disc">
+                <svg class="radar" viewBox="0 0 200 165" data-radar="0.85,0.7,0.9,0.55,0.8,0.65"></svg>
+                <div class="dtxt">
+                  <div class="dtitle">Tamper-resistant verification of firmware with a trusted platform module</div>
+                  <div class="dmeta">US 10,839,079 · Granted · depth of disclosure by feature</div>
+                  <ul>
+                    <li>Shielded, tamper-resistant reconfigurable logic placed between general logic and platform firmware storage.</li>
+                    <li>Cryptographic hash generates a signed root-of-trust measurement loaded into platform configuration registers at boot.</li>
+                    <li>Internal secret key (volatile or nonvolatile) enables secure firmware reprogramming.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
           <!-- 04 Commercialization — Those with Relevant Patent Protection -->
           <div class="rp-sec">
-            <div class="sh"><span class="nn">04</span><h5>Commercialization — Those with Relevant Patent Protection</h5></div>
+            <div class="sh"><span class="nn">06</span><h5>Commercialization &amp; Landscape — Those with Relevant Patent Protection</h5></div>
             <div class="tband">
               <div class="tmap" id="tmapProduct"></div>
               <div class="tpanel">
@@ -1332,8 +1374,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
               </div>
             </div>
             <div class="rp-legend" style="margin-top:12px">
-              <span><i style="background:#f87171"></i>Highest overlap</span>
-              <span><i style="background:#d6b878"></i>Medium overlap</span>
+              <span><i style="background:#8c8cff"></i>Highest overlap</span>
+              <span><i style="background:#8a8ad0"></i>Medium overlap</span>
               <span><i style="background:#6c7587"></i>Lowest overlap</span>
             </div>
 
@@ -1358,43 +1400,6 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
               <div class="cseclabel">Relevant products</div>
               <div class="prod">Intel Boot Guard<span>Silicon-anchored firmware authentication that enforces a verified boot.</span></div>
               <div class="prod">Intel TDX<span>Confidential VMs via hardware-rooted trusted execution.</span></div>
-            </div>
-          </div>
-
-          <!-- 05 Threats — Most Relevant Disclosures (radar per patent) -->
-          <div class="rp-sec">
-            <div class="sh"><span class="nn">05</span><h5>Threats — Most Relevant Disclosures</h5></div>
-            <div class="rp-panel">
-              <div class="disc">
-                <svg class="radar" viewBox="0 0 200 165" data-radar="0.85,0.7,0.9,0.55,0.8,0.65"></svg>
-                <div class="dtxt">
-                  <div class="dtitle">Tamper-resistant verification of firmware with a trusted platform module</div>
-                  <div class="dmeta">US 10,839,079 · Granted · depth of disclosure by feature</div>
-                  <ul>
-                    <li>Shielded, tamper-resistant reconfigurable logic placed between general logic and platform firmware storage.</li>
-                    <li>Cryptographic hash generates a signed root-of-trust measurement loaded into platform configuration registers at boot.</li>
-                    <li>Internal secret key (volatile or nonvolatile) enables secure firmware reprogramming.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 06 Opportunities -->
-          <div class="rp-sec">
-            <div class="sh"><span class="nn">06</span><h5>Opportunities — Per-Feature Novelty</h5></div>
-            <div class="rp-panel">
-              <div class="nov-row"><span class="nl">Hardware control plane</span><span class="nb"><i style="--w:88%"></i></span><span class="nv">88</span></div>
-              <div class="nov-row"><span class="nl">Destructive zeroization</span><span class="nb"><i style="--w:81%"></i></span><span class="nv">81</span></div>
-              <div class="nov-row"><span class="nl">Below-firmware attestation</span><span class="nb"><i style="--w:74%"></i></span><span class="nv">74</span></div>
-              <div class="nov-row"><span class="nl">Tamper sensing</span><span class="nb"><i style="--w:52%"></i></span><span class="nv">52</span></div>
-              <div class="rp-callout" style="margin-top:14px">
-                <h6>Takeaway Summary</h6>
-                <p>The clearest differentiator is the relocation of trust enforcement into dedicated silicon logic that
-                  operates below firmware, hypervisor, and OS layers, with hardware attestation controlling whether the
-                  platform powers on. The strongest white space is the fusion of device identity, policy enforcement,
-                  physical isolation, tamper sensing, and destructive zeroization into one hardware-governed control plane.</p>
-              </div>
             </div>
           </div>
 
@@ -1426,7 +1431,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   <!-- Roadmap -->
   <section class="section">
     <div class="wrap">
-      <div class="section-head"><div class="eyebrow">Roadmap</div><h2>What's next</h2></div>
+      <div class="section-head sh-plain" data-enh="1"><div class="eyebrow">Roadmap</div><h2>What's next</h2></div>
       <div class="grid-3">
         <div class="card"><h3>Deeper workflows</h3><p>Richer agent reasoning across more IP scenarios.</p></div>
         <div class="card"><h3>More technical sources</h3><p>Broader scientific and technical coverage.</p></div>
@@ -1445,8 +1450,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 <div class="page" id="page-prod-validity">
   <section class="section">
     <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">Product</div>
+      <div class="section-head sh-plain" data-enh="1">
         <h2>Validity &amp; Patentability</h2>
         <p class="lead">Score how novel each feature of an invention or patent is against the prior art —
           and get a fast, evidence-backed read on patentability.</p>
@@ -1456,7 +1460,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
         <div class="uc-grid">
           <div><div class="lbl">Input</div><p>An invention disclosure or patent — claims, features, and supporting technical detail.</p></div>
           <div><div class="lbl">What Holmes does</div><p>Embeds each feature and compares it against the patent corpus and prior art, scoring novelty feature-by-feature and surfacing the closest references with cited passages.</p></div>
-          <div><div class="lbl">Output</div><p>A per-feature novelty score (0–100), the most relevant prior art with quoted passages, and a patentability indicator for triage.</p></div>
+          <div><div class="lbl">Output</div><p>A per-feature novelty score (0–100), the most relevant prior art with quoted passages, and the proprietary HVP Score<sup style="font-size:.55em;line-height:0">&copy;</sup> for triage.</p></div>
           <div><div class="lbl">Why it matters</div><p>Focus drafting and prosecution where the invention is strongest, and flag weak features before you file.</p></div>
         </div>
       </div>
@@ -1472,8 +1476,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 <div class="page" id="page-prod-fto">
   <section class="section">
     <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">Product</div>
+      <div class="section-head sh-plain" data-enh="1">
         <h2>Freedom to Operate &amp; Clearance</h2>
         <p class="lead">See where a product or technology may run into existing patents — before launch.</p>
       </div>
@@ -1482,7 +1485,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
         <div class="uc-grid">
           <div><div class="lbl">Input</div><p>A description of your product or technology, plus any patents or IP information.</p></div>
           <div><div class="lbl">What Holmes does</div><p>Maps your technology against active patents, ranking the closest by degree of overlap and pinpointing the specific claims and passages that matter.</p></div>
-          <div><div class="lbl">Output</div><p>A ranked list of overlapping patents with cited claims, threat bands by degree of overlap, and the areas that warrant closer review.</p></div>
+          <div><div class="lbl">Output</div><p>A ranked list of overlapping patents with cited claims, threat bands by degree of overlap, and a detailed comparison report (Holmes FTO Score<sup style="font-size:.55em;line-height:0">&copy;</sup>).</p></div>
           <div><div class="lbl">Why it matters</div><p>Spot clearance risk early and direct deeper legal review to the patents that actually matter.</p></div>
         </div>
       </div>
@@ -1498,8 +1501,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 <div class="page" id="page-prod-infringement">
   <section class="section">
     <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">Product</div>
+      <div class="section-head sh-plain" data-enh="1">
         <h2>Infringers &amp; Infringement</h2>
         <p class="lead">Identify parties and products whose offerings overlap with your patents.</p>
       </div>
@@ -1524,8 +1526,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 <div class="page" id="page-prod-commercialization">
   <section class="section">
     <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">Product</div>
+      <div class="section-head sh-plain" data-enh="1">
         <h2>Commercialization &amp; Landscape</h2>
         <p class="lead">Map the competitive landscape around your IP — who owns what, where the white-space is,
           and where to go next.</p>
@@ -1550,15 +1551,15 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 <div class="page" id="page-usecases">
   <section class="section">
     <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">Use cases</div>
-        <h2>Patent and IP intelligence, where the stakes are real</h2>
-        <p class="lead">Holmes is built for the teams who make decisions on patents and IP — attorneys,
-          investors, advisors, and the companies that depend on their IP.</p>
+      <div class="section-head sh-plain" data-enh="1">
+        <div class="eyebrow">What Holmes can do for you</div>
+        <h2>Potential Customers and Use Cases</h2>
+        <p class="lead">Holmes allows you to fully understand what you own, the risks and opportunities of your
+          patents and IP, and potential commercialization and business implications.</p>
       </div>
 
       <div class="uc">
-        <h3><span class="uc-tag">Attorneys</span> Move faster on high-stakes analysis</h3>
+        <h3><span class="uc-tag">Patent Attorney</span> <span class="go" data-go="uc-attorney">Move faster on high-stakes analysis</span></h3>
         <div class="uc-grid">
           <div><div class="lbl">Pain point</div><p>Manual review across patents, prior art, and file histories is slow and easy to miss.</p></div>
           <div><div class="lbl">What Holmes does</div><p>Agents review filed patents, scientific documents, technical information, and relevant web pages.</p></div>
@@ -1568,27 +1569,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
       </div>
 
       <div class="uc">
-        <h3><span class="uc-tag">Venture + PE</span> Diligence before you invest</h3>
-        <div class="uc-grid">
-          <div><div class="lbl">Pain point</div><p>IP risk is hard to assess quickly during a deal window.</p></div>
-          <div><div class="lbl">What Holmes does</div><p>Assesses patent strength, ownership, threats, and white-space.</p></div>
-          <div><div class="lbl">Output</div><p>A diligence-ready report on risk and commercialization potential.</p></div>
-          <div><div class="lbl">Why it matters</div><p>Make investment decisions with IP fully in view.</p></div>
-        </div>
-      </div>
-
-      <div class="uc">
-        <h3><span class="uc-tag">Advisors</span> Turn IP analysis into strategy</h3>
-        <div class="uc-grid">
-          <div><div class="lbl">Pain point</div><p>Clients need IP insight translated into business direction.</p></div>
-          <div><div class="lbl">What Holmes does</div><p>Connects patent intelligence to ownership, threats, and opportunities.</p></div>
-          <div><div class="lbl">Output</div><p>A report that supports strategy and commercialization advice.</p></div>
-          <div><div class="lbl">Why it matters</div><p>Advise with evidence, not assumptions.</p></div>
-        </div>
-      </div>
-
-      <div class="uc">
-        <h3><span class="uc-tag">Corporate IP Teams</span> Protect and expand the portfolio</h3>
+        <h3><span class="uc-tag">Company</span> <span class="go" data-go="uc-company">Protect and expand the portfolio</span></h3>
         <div class="uc-grid">
           <div><div class="lbl">Pain point</div><p>Hard to see where IP protects the business and where it is exposed.</p></div>
           <div><div class="lbl">What Holmes does</div><p>Maps ownership, conflicts, and white-space across the portfolio.</p></div>
@@ -1598,14 +1579,25 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
       </div>
 
       <div class="uc">
-        <h3><span class="uc-tag">Product / Innovation Teams</span> Find white-space and new claims</h3>
+        <h3><span class="uc-tag">Investors</span> <span class="go" data-go="uc-investors">Diligence before you invest</span></h3>
         <div class="uc-grid">
-          <div><div class="lbl">Pain point</div><p>Unclear where to expand claims or products without conflict.</p></div>
-          <div><div class="lbl">What Holmes does</div><p>Surfaces white-space, new claims, and product directions.</p></div>
-          <div><div class="lbl">Output</div><p>A report indicating the most promising opportunity areas.</p></div>
-          <div><div class="lbl">Why it matters</div><p>Innovate with a clear view of the IP landscape.</p></div>
+          <div><div class="lbl">Pain point</div><p>IP risk is hard to assess quickly during a deal window.</p></div>
+          <div><div class="lbl">What Holmes does</div><p>Assesses patent strength, ownership, threats, and white-space.</p></div>
+          <div><div class="lbl">Output</div><p>A diligence-ready report on risk and commercialization potential.</p></div>
+          <div><div class="lbl">Why it matters</div><p>Make investment decisions with IP fully in view.</p></div>
         </div>
       </div>
+
+      <div class="uc">
+        <h3><span class="uc-tag">Advisors</span> <span class="go" data-go="uc-advisors">Turn IP analysis into strategy</span></h3>
+        <div class="uc-grid">
+          <div><div class="lbl">Pain point</div><p>Clients need IP insight translated into business direction.</p></div>
+          <div><div class="lbl">What Holmes does</div><p>Connects patent intelligence to ownership, threats, and opportunities.</p></div>
+          <div><div class="lbl">Output</div><p>A report that supports strategy and commercialization advice.</p></div>
+          <div><div class="lbl">Why it matters</div><p>Advise with evidence, not assumptions.</p></div>
+        </div>
+      </div>
+
     </div>
   </section>
 </div>
@@ -1619,9 +1611,14 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
       <div class="eyebrow eyebrow--lg">What Holmes can do for Patent Attorneys</div>
       <h2 style="font-size:clamp(1.7rem,2.6vw,2.3rem);margin-bottom:24px">For Patent Attorneys</h2>
       <div class="prose" style="max-width:760px">
-        <p>An AI agent that leverages your work and builds a comprehensive map of the patent landscape — so
-          you stay in control and make the call. <em>Placeholder blurb — fuller copy to come.</em></p>
+        <p>Holmes puts a team of AI agents on your matter — reviewing filed patents, scientific documents,
+          technical information, and relevant web pages at far greater speed and breadth than manual review.</p>
       </div>
+      <ul class="fp-list" style="margin-top:26px;max-width:680px">
+          <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">AI agents to leverage your work.</span></li>
+          <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Comprehensive map for you to make the decision.</span></li>
+          <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">A structured report on conflicts, invalidity, and ownership — with evidence.</span></li>
+        </ul>
       <div style="margin-top:36px"><button class="btn btn--primary btn--lg" data-go="contact">CLICK FOR DEMO</button></div>
     </div>
   </section>
@@ -1633,9 +1630,14 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
       <div class="eyebrow eyebrow--lg">What Holmes can do for Companies</div>
       <h2 style="font-size:clamp(1.7rem,2.6vw,2.3rem);margin-bottom:24px">For Companies</h2>
       <div class="prose" style="max-width:760px">
-        <p>Know exactly what you own, prepare your defense, and plan for offense across your patent and IP
-          portfolio. <em>Placeholder blurb — fuller copy to come.</em></p>
+        <p>Patents and IP are your company’s most important assets. Holmes maps ownership, conflicts, and
+          white-space across your portfolio — so you can see where you are protected and where you are exposed.</p>
       </div>
+      <ul class="fp-list" style="margin-top:26px;max-width:680px">
+          <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Know everything about what you have.</span></li>
+          <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Prepare on defense and plan for offense.</span></li>
+          <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">A report highlighting risk areas and expansion opportunities.</span></li>
+        </ul>
       <div style="margin-top:36px"><button class="btn btn--primary btn--lg" data-go="contact">CLICK FOR DEMO</button></div>
     </div>
   </section>
@@ -1647,9 +1649,14 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
       <div class="eyebrow eyebrow--lg">What Holmes can do for Investors</div>
       <h2 style="font-size:clamp(1.7rem,2.6vw,2.3rem);margin-bottom:24px">For Investors</h2>
       <div class="prose" style="max-width:760px">
-        <p>Understand the risks and opportunities of a target's patents and IP before you write a check —
-          so you never do a deal without it. <em>Placeholder blurb — fuller copy to come.</em></p>
+        <p>IP risk is hard to assess in a deal window. Holmes assesses patent strength, ownership, threats, and
+          white-space — and returns a diligence-ready report on risk and commercialization potential.</p>
       </div>
+      <ul class="fp-list" style="margin-top:26px;max-width:680px">
+          <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Do not do a deal without it.</span></li>
+          <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Risks and opportunities before you write a check.</span></li>
+          <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Make investment decisions with IP fully in view.</span></li>
+        </ul>
       <div style="margin-top:36px"><button class="btn btn--primary btn--lg" data-go="contact">CLICK FOR DEMO</button></div>
     </div>
   </section>
@@ -1661,9 +1668,14 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
       <div class="eyebrow eyebrow--lg">What Holmes can do for Advisors</div>
       <h2 style="font-size:clamp(1.7rem,2.6vw,2.3rem);margin-bottom:24px">For Advisors</h2>
       <div class="prose" style="max-width:760px">
-        <p>Bring best practices to client work for investment banks and consulting firms — grounded,
-          cited, and defensible. <em>Placeholder blurb — fuller copy to come.</em></p>
+        <p>Holmes brings best practices to client work for investment banks and consulting firms — connecting
+          patent intelligence to ownership, threats, and opportunities.</p>
       </div>
+      <ul class="fp-list" style="margin-top:26px;max-width:680px">
+          <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Best practices for client work.</span></li>
+          <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Advise with evidence, not assumptions.</span></li>
+          <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">A report that supports strategy and commercialization advice.</span></li>
+        </ul>
       <div style="margin-top:36px"><button class="btn btn--primary btn--lg" data-go="contact">CLICK FOR DEMO</button></div>
     </div>
   </section>
@@ -1675,7 +1687,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 <div class="page" id="page-qa">
   <section class="section">
     <div class="wrap">
-      <div class="section-head"><div class="eyebrow">Q+A</div><h2>Questions and answers</h2></div>
+      <div class="section-head sh-plain" data-enh="1"><h2>Questions and answers</h2></div>
       <div class="qa" id="qaList">
         <!-- filled by JS -->
       </div>
@@ -1689,24 +1701,37 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 <div class="page" id="page-security">
   <section class="section">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head sh-plain" data-enh="1">
         <div class="eyebrow">Security</div>
         <h2>Built for enterprise confidentiality</h2>
-        <p class="lead">Customer materials should be protected and handled securely. Security, access control,
-          data retention, and model-training policies to be finalized before launch.</p>
+        <p class="lead">Holmes is built for patent attorneys, companies, investors, and advisors — work where
+          confidentiality is not optional. Here is what we do today, and what is in the pipeline.</p>
       </div>
+
+      <div class="sec-group">What we do today</div>
       <div class="sec-grid">
-        <div class="sec-card"><h3>Enterprise confidentiality</h3><p>Built so sensitive patent and IP materials are handled with enterprise-grade confidentiality.</p><span class="todo">TODO: confirm specifics</span></div>
-        <div class="sec-card"><h3>Data handling</h3><p>Clear policies for how customer materials are processed, retained, and deleted.</p><span class="todo">TODO: confirm data retention</span></div>
-        <div class="sec-card"><h3>Access controls</h3><p>Role-based access so only authorized users reach customer reports and materials.</p><span class="todo">TODO: confirm access model</span></div>
-        <div class="sec-card"><h3>Encryption</h3><p>Encryption in transit and at rest across the platform.</p><span class="todo">TODO: confirm encryption specifics</span></div>
-        <div class="sec-card"><h3>Secure report delivery</h3><p>Reports delivered through secure, access-controlled channels.</p><span class="todo">TODO: confirm delivery model</span></div>
-        <div class="sec-card"><h3>Model-use policy</h3><p>Clear policy on whether customer data is used for model training.</p><span class="todo">TODO: confirm whether customer data is used for training</span></div>
-        <div class="sec-card"><h3>Human review / attorney-in-the-loop</h3><p>Holmes supports professional judgment — it does not replace it.</p></div>
-        <div class="sec-card"><h3>Compliance roadmap</h3><p>A defined path toward enterprise security and compliance milestones.</p><span class="todo">TODO: confirm compliance certifications or roadmap; confirm hosting environment</span></div>
-        <div class="sec-card"><h3>Contact for security review</h3><p>Security and procurement teams can request a detailed review.</p><button class="btn btn--ghost" data-go="contact" style="margin-top:12px">Request security review</button></div>
+        <div class="sec-card"><h3>Dedicated infrastructure</h3><p>Holmes runs on dedicated, single-tenant hardware under our direct control — not shared, off-the-shelf cloud instances.</p></div>
+        <div class="sec-card"><h3>Encryption</h3><p>Customer materials are encrypted in transit and at rest across the platform.</p></div>
+        <div class="sec-card"><h3>No training on your data</h3><p>Your inputs, searches, and reports are never used to train models and are never shared.</p></div>
+        <div class="sec-card"><h3>Workspace isolation</h3><p>Your searches and work product stay with your team. Access is limited to authorized users on your account.</p></div>
+        <div class="sec-card"><h3>Public-source analysis</h3><p>Holmes analyzes published patent, scientific, and technical records — your confidential materials never enter the shared corpus.</p></div>
+        <div class="sec-card"><h3>Auditable outputs</h3><p>Every finding is cited to verifiable sources with verbatim passages, so results can be checked — not taken on faith.</p></div>
       </div>
-      <div class="note"><strong>Note:</strong> No public certification claims (SOC 2, ISO 27001, ISO 42001, or others) appear until verified.</div>
+
+      <div class="sec-group">In the pipeline</div>
+      <div class="sec-grid">
+        <div class="sec-card"><span class="pipe">In the pipeline</span><h3>SOC 2 attestation</h3><p>Independent SOC 2 examination ahead of enterprise rollout.</p></div>
+        <div class="sec-card"><span class="pipe">In the pipeline</span><h3>Single sign-on</h3><p>SAML-based SSO and enterprise identity integration.</p></div>
+        <div class="sec-card"><span class="pipe">In the pipeline</span><h3>Roles &amp; audit logs</h3><p>Role-based permissions and full audit trails across workspaces.</p></div>
+        <div class="sec-card"><span class="pipe">In the pipeline</span><h3>Third-party penetration testing</h3><p>A recurring external security testing program.</p></div>
+        <div class="sec-card"><span class="pipe">In the pipeline</span><h3>High availability</h3><p>Redundant infrastructure with failover as customer volume scales.</p></div>
+        <div class="sec-card"><span class="pipe">In the pipeline</span><h3>Retention &amp; deletion controls</h3><p>Customer-configurable data retention and verified deletion.</p></div>
+      </div>
+
+      <div style="margin-top:38px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+        <button class="btn btn--primary btn--lg" data-go="contact">REQUEST SECURITY REVIEW</button>
+        <p style="color:var(--gray-2);font-size:.95rem">Security documentation is available to procurement and security teams on request.</p>
+      </div>
     </div>
   </section>
 </div>
@@ -1717,8 +1742,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 <div class="page" id="page-company">
   <section class="section">
     <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">Company</div>
+      <div class="section-head sh-plain" data-enh="1">
         <h2>Domain-specific AI for patents and IP</h2>
       </div>
       <div class="prose" style="max-width:780px">
@@ -1739,8 +1763,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 <div class="page" id="page-team">
   <section class="section">
     <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">Team</div>
+      <div class="section-head sh-plain" data-enh="1">
         <h2>Founding team</h2>
         <p class="lead">The leadership building HolmesAI — across business, technology, and patent law.</p>
       </div>
@@ -1790,7 +1813,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 <div class="page" id="page-news">
   <section class="section">
     <div class="wrap">
-      <div class="section-head"><div class="eyebrow">News</div><h2>News &amp; announcements</h2></div>
+      <div class="section-head sh-plain" data-enh="1"><h2>News &amp; announcements</h2></div>
       <div class="simple-card">
         <h3>Coming soon</h3>
         <p>News and announcements will appear here. <span class="todo">TODO: do not invent press coverage</span></p>
@@ -1805,7 +1828,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 <div class="page" id="page-careers">
   <section class="section">
     <div class="wrap">
-      <div class="section-head"><div class="eyebrow">Careers</div><h2>Join HolmesAI</h2>
+      <div class="section-head sh-plain" data-enh="1"><h2>Join HolmesAI</h2>
         <p class="lead">Near-term roles below are draft / future openings. <span class="todo">TODO: confirm roles &amp; timing</span></p>
       </div>
       <div class="simple-card"><h3>CEO candidate</h3><p>Senior leader to drive HolmesAI to scale.</p><div class="role-meta"><span>Draft role</span><span>Leadership</span></div></div>
@@ -1823,7 +1846,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 <div class="page" id="page-contact">
   <section class="section">
     <div class="wrap">
-      <div class="section-head"><div class="eyebrow">Contact</div><h2>Request a demo or get in touch</h2></div>
+      <div class="section-head sh-plain" data-enh="1"><h2>Request a demo or get in touch</h2></div>
       <div class="form">
         <div class="row"><label for="c-name">Name</label><input id="c-name" type="text" placeholder="Your name"></div>
         <div class="row-2">
