@@ -81,13 +81,18 @@ export default async function handler(req, res) {
     // --- Single-session timeline mode (the "god view" drill-down) ---
     if (req.query && req.query.session) {
       const visitor = String(req.query.session).slice(0, 64);
-      const from = new Date(req.query.from || Date.now() - 86400000).toISOString();
+      // Default to the full retained window so an admin can see a person's
+      // ENTIRE behavior; the per-session inline expand passes explicit from/to.
+      const from = new Date(req.query.from || Date.now() - 90 * 86400000).toISOString();
       const to = new Date(req.query.to || Date.now()).toISOString();
       const timeline = await q(
-        `SELECT ts, type, COALESCE(spa_view, path) AS page, el_text, el_datago, el_href,
-                scroll_pct, engaged_ms, outcome
+        `SELECT ts, type, surface, COALESCE(spa_view, path) AS page, referrer,
+                el_text, el_datago, el_href, click_x, click_y,
+                scroll_pct, engaged_ms, outcome,
+                geo_city, geo_region, geo_country, device_type, browser, os,
+                viewport_w, viewport_h, lang, tz
          FROM events WHERE visitor_hash = $1 AND ts BETWEEN $2 AND $3
-         ORDER BY ts LIMIT 1000`,
+         ORDER BY ts LIMIT 3000`,
         [visitor, from, to],
       );
       return res.status(200).json({ timeline });
