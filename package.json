@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
     "@vercel/edge": "^1.1.1"
   }
 }

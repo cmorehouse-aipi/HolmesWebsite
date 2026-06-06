@@ -1,10 +1,19 @@
-// Edge Middleware: guards /site/* . Requests without a valid, unexpired,
-// correctly-signed session cookie are redirected to the splash (/), so the
-// main page is unreachable by direct URL. Verification uses Web Crypto (HMAC
-// SHA-256) with the same AUTH_SECRET the login function signs with.
+// Edge Middleware — two independent auth domains:
+//   • /site, /site/*        → signed-cookie session (the visitor login).
+//                             Invalid/expired → redirect to the splash (/).
+//   • /dashboard(/*), /api/stats → HTTP Basic Auth (the analytics admin login),
+//                             credentials from DASHBOARD_USER / DASHBOARD_PASS.
+//
+// /api/track is intentionally NOT matched here, so it stays public — any
+// visitor must be able to POST analytics events without credentials.
+//
+// Cookie verification uses Web Crypto (HMAC SHA-256) with the same AUTH_SECRET
+// the login function signs with.
 import { next } from '@vercel/edge';
 
-export const config = { matcher: ['/site', '/site/:path*'] };
+export const config = {
+  matcher: ['/site', '/site/:path*', '/dashboard', '/dashboard/:path*', '/api/stats'],
+};
 
 const COOKIE = 'holmes_auth';
 const enc = new TextEncoder();
@@ -40,6 +49,7 @@ function readCookie(header, name) {
   return null;
 }
 
+// --- /site cookie session ---------------------------------------------------
 async function valid(token, secret) {
   if (!token) return false;
   const dot = token.indexOf('.');
@@ -59,7 +69,48 @@ async function valid(token, secret) {
   return true;
 }
 
+// --- /dashboard Basic Auth --------------------------------------------------
+// Constant-time compare via SHA-256 digests so neither value's length leaks.
+async function digestEqual(a, b) {
+  const [da, db] = await Promise.all([
+    crypto.subtle.digest('SHA-256', enc.encode(String(a))),
+    crypto.subtle.digest('SHA-256', enc.encode(String(b))),
+  ]);
+  const x = new Uint8Array(da), y = new Uint8Array(db);
+  let r = 0;
+  for (let i = 0; i < x.length; i++) r |= x[i] ^ y[i];
+  return r === 0;
+}
+
+async function basicAuthOk(request) {
+  const u = process.env.DASHBOARD_USER;
+  const p = process.env.DASHBOARD_PASS;
+  if (!u || !p) return false;
+  const m = /^Basic\s+(.+)$/i.exec(request.headers.get('authorization') || '');
+  if (!m) return false;
+  let decoded;
+  try { decoded = atob(m[1]); } catch { return false; }
+  const i = decoded.indexOf(':');
+  const gotU = i === -1 ? decoded : decoded.slice(0, i);
+  const gotP = i === -1 ? '' : decoded.slice(i + 1);
+  // Evaluate both (no short-circuit) so timing doesn't reveal which field failed.
+  const [okU, okP] = await Promise.all([digestEqual(gotU, u), digestEqual(gotP, p)]);
+  return okU && okP;
+}
+
 export default async function middleware(request) {
+  const { pathname } = new URL(request.url);
+
+  // Dashboard UI + its data API → Basic Auth (separate from the site session).
+  if (pathname === '/dashboard' || pathname.startsWith('/dashboard/') || pathname === '/api/stats') {
+    if (await basicAuthOk(request)) return next();
+    return new Response('Authentication required', {
+      status: 401,
+      headers: { 'WWW-Authenticate': 'Basic realm="Holmes Analytics", charset="UTF-8"' },
+    });
+  }
+
+  // /site/* → signed-cookie session (unchanged behavior).
   const secret = process.env.AUTH_SECRET;
   const token = readCookie(request.headers.get('cookie'), COOKIE);
   if (secret && await valid(token, secret)) return next();

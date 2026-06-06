@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Holmes · Observatory</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='8' y='8' width='16' height='16' transform='rotate(45 16 16)' fill='%235B6CFF'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#06080F; --ink2:#080B16; --panel:#0C1120; --panel2:#0E1426;
+  --line:rgba(140,156,200,.12); --line2:rgba(140,156,200,.20);
+  --txt:#E8EBF5; --muted:#8B93AC; --dim:#5C6480;
+  --indigo:#5B6CFF; --indigo2:#7C8BFF; --indigo-d:#2C3AA8;
+  --mint:#3FE9B6; --amber:#F5B14C; --rose:#FF6B7E;
+  --glow:0 0 0 1px var(--line), 0 18px 50px -28px rgba(0,0,0,.9);
+  --r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:"Hanken Grotesk",-apple-system,sans-serif;
+  background:var(--ink); color:var(--txt);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  font-size:14px; line-height:1.45; overflow-x:hidden;
+}
+/* atmosphere: dot-grid + corner glows */
+body::before{
+  content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:radial-gradient(rgba(140,156,200,.08) 1px, transparent 1px);
+  background-size:26px 26px; mask-image:linear-gradient(180deg,#000,transparent 80%);
+  opacity:.5;
+}
+body::after{
+  content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(60% 40% at 12% -5%, rgba(91,108,255,.18), transparent 60%),
+    radial-gradient(50% 40% at 100% 0%, rgba(63,233,182,.07), transparent 55%);
+}
+.wrap{position:relative; z-index:1; max-width:1480px; margin:0 auto; padding:22px clamp(16px,3vw,34px) 80px}
+
+/* ---------- command bar ---------- */
+.bar{display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+  padding-bottom:20px; border-bottom:1px solid var(--line); margin-bottom:26px}
+.brand{display:flex; align-items:center; gap:13px}
+.mark{width:34px; height:34px; flex:0 0 auto; filter:drop-shadow(0 0 10px rgba(91,108,255,.5))}
+.mark svg{display:block; width:100%; height:100%; fill:var(--indigo)}
+.brand h1{font-family:"Fraunces",serif; font-weight:500; font-size:21px; letter-spacing:.2px; line-height:1}
+.brand .sub{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--dim); margin-top:5px}
+.bar .spacer{flex:1}
+.live{display:flex; align-items:center; gap:8px; font-family:"IBM Plex Mono",monospace;
+  font-size:12px; letter-spacing:.06em; color:var(--mint);
+  padding:7px 13px; border:1px solid rgba(63,233,182,.28); border-radius:999px; background:rgba(63,233,182,.05)}
+.live .dot{width:7px; height:7px; border-radius:50%; background:var(--mint); box-shadow:0 0 0 0 rgba(63,233,182,.6); animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(63,233,182,.5)}70%{box-shadow:0 0 0 9px rgba(63,233,182,0)}100%{box-shadow:0 0 0 0 rgba(63,233,182,0)}}
+.seg{display:inline-flex; border:1px solid var(--line2); border-radius:999px; overflow:hidden; background:var(--panel)}
+.seg button{font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.04em;
+  color:var(--muted); background:none; border:0; padding:8px 15px; cursor:pointer; transition:.18s}
+.seg button:hover{color:var(--txt)}
+.seg button.on{background:var(--indigo); color:#fff; text-shadow:0 1px 6px rgba(0,0,0,.4)}
+.meta{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--dim); letter-spacing:.04em; text-align:right}
+.meta b{color:var(--muted); font-weight:500}
+
+/* ---------- section scaffolding ---------- */
+.sec-head{display:flex; align-items:baseline; gap:12px; margin:30px 2px 14px}
+.sec-head .idx{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--indigo2); letter-spacing:.1em}
+.sec-head h2{font-family:"Fraunces",serif; font-weight:500; font-size:17px; letter-spacing:.2px}
+.sec-head .rule{flex:1; height:1px; background:linear-gradient(90deg,var(--line),transparent)}
+
+.grid{display:grid; gap:14px}
+.card{background:linear-gradient(180deg,var(--panel),var(--panel2)); border:1px solid var(--line);
+  border-radius:var(--r); padding:18px; box-shadow:var(--glow); position:relative; overflow:hidden}
+.card .ct{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--dim); margin-bottom:14px; display:flex; align-items:center; gap:8px}
+.card .ct::before{content:""; width:5px; height:5px; background:var(--indigo); transform:rotate(45deg); flex:0 0 auto}
+
+/* ---------- KPI tiles ---------- */
+.kpis{grid-template-columns:repeat(6,1fr)}
+@media(max-width:1100px){.kpis{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{padding:16px 16px 14px}
+.kpi .lab{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted)}
+.kpi .num{font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:30px; line-height:1.05; margin:9px 0 6px; letter-spacing:-.5px}
+.kpi .foot{display:flex; align-items:center; justify-content:space-between; gap:8px; min-height:18px}
+.chip{font-family:"IBM Plex Mono",monospace; font-size:11px; padding:2px 7px; border-radius:6px; letter-spacing:.02em}
+.chip.up{color:var(--mint); background:rgba(63,233,182,.1)}
+.chip.down{color:var(--rose); background:rgba(255,107,126,.1)}
+.chip.flat{color:var(--dim); background:rgba(140,156,200,.08)}
+.kpi svg.spark{display:block; overflow:visible}
+.kpi.hl{background:linear-gradient(180deg,rgba(91,108,255,.16),rgba(91,108,255,.04)); border-color:rgba(91,108,255,.3)}
+.kpi.hl .num{color:#fff}
+
+/* ---------- layout rows ---------- */
+.row-2{grid-template-columns:1.55fr 1fr}
+.row-map{grid-template-columns:1.7fr 1fr}
+.row-3{grid-template-columns:repeat(3,1fr)}
+.row-beh{grid-template-columns:1.3fr .85fr .85fr}
+@media(max-width:1000px){.row-2,.row-map,.row-3,.row-beh{grid-template-columns:1fr}}
+.chart{width:100%; height:300px}
+.chart.sm{height:230px}
+#mapc{height:380px}
+
+/* ---------- bar lists ---------- */
+.blist{display:flex; flex-direction:column; gap:9px}
+.brow{position:relative; display:grid; grid-template-columns:1fr auto; align-items:center; gap:10px;
+  padding:8px 11px; border-radius:8px; background:rgba(140,156,200,.04); overflow:hidden}
+.brow .fill{position:absolute; inset:0 auto 0 0; background:linear-gradient(90deg,rgba(91,108,255,.26),rgba(91,108,255,.07)); z-index:0}
+.brow .lbl,.brow .val{position:relative; z-index:1; min-width:0}
+.brow .lbl{font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:flex; align-items:center; gap:8px}
+.brow .val{font-family:"IBM Plex Mono",monospace; font-size:12.5px; color:var(--muted)}
+.tag{font-family:"IBM Plex Mono",monospace; font-size:9.5px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--indigo2); border:1px solid rgba(91,108,255,.3); border-radius:5px; padding:1px 5px; flex:0 0 auto}
+.flag{font-size:15px; line-height:1; flex:0 0 auto}
+
+/* ---------- top pages / tables ---------- */
+table{width:100%; border-collapse:collapse}
+th{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--dim); text-align:left; font-weight:500; padding:0 10px 10px; border-bottom:1px solid var(--line)}
+th.r,td.r{text-align:right}
+td{padding:10px; border-bottom:1px solid rgba(140,156,200,.06); font-size:13px; vertical-align:middle}
+tr:last-child td{border-bottom:0}
+td.mono,.mono{font-family:"IBM Plex Mono",monospace}
+.minibar{height:5px; border-radius:3px; background:rgba(140,156,200,.12); overflow:hidden; min-width:60px}
+.minibar i{display:block; height:100%; background:linear-gradient(90deg,var(--indigo2),var(--indigo))}
+
+/* ---------- sessions / god view ---------- */
+.srow{cursor:pointer; transition:background .15s}
+.srow:hover{background:rgba(91,108,255,.06)}
+.srow td:first-child{position:relative; padding-left:24px}
+.srow td:first-child::before{content:"▸"; position:absolute; left:8px; color:var(--dim); transition:transform .18s}
+.srow.open td:first-child::before{transform:rotate(90deg); color:var(--indigo2)}
+.detail td{background:var(--ink2); padding:0}
+.tl{padding:14px 14px 16px 30px; display:flex; flex-direction:column; gap:0; position:relative}
+.tl::before{content:""; position:absolute; left:14px; top:18px; bottom:18px; width:1px; background:var(--line2)}
+.tev{display:grid; grid-template-columns:78px 90px 1fr; gap:12px; align-items:baseline; padding:5px 0; position:relative}
+.tev::before{content:""; position:absolute; left:-16.5px; top:11px; width:7px; height:7px; border-radius:50%;
+  background:var(--indigo); box-shadow:0 0 0 3px var(--ink2)}
+.tev .tt{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--dim)}
+.tev .ty{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--indigo2)}
+.tev .td2{font-size:12.5px; color:var(--txt); min-width:0; overflow:hidden; text-overflow:ellipsis}
+.tev.click::before{background:var(--amber)} .tev.click .ty{color:var(--amber)}
+.tev.form_submit::before,.tev.login_attempt::before{background:var(--mint)} .tev.form_submit .ty,.tev.login_attempt .ty{color:var(--mint)}
+
+/* ---------- misc ---------- */
+.legend{display:flex; gap:16px; font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted); margin-top:4px}
+.legend span{display:inline-flex; align-items:center; gap:6px}
+.legend i{width:9px; height:9px; border-radius:2px; display:inline-block}
+.empty{color:var(--dim); font-size:13px; padding:14px 4px; font-style:italic}
+.toast{position:fixed; left:50%; bottom:26px; transform:translateX(-50%) translateY(20px); z-index:50;
+  background:var(--panel2); border:1px solid var(--line2); border-radius:10px; padding:11px 18px; font-size:13px;
+  color:var(--txt); box-shadow:0 20px 50px -20px #000; opacity:0; transition:.3s; pointer-events:none}
+.toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+.scroll-x{overflow-x:auto}
+.fade{animation:fade .5s ease both}
+@keyframes fade{from{opacity:0; transform:translateY(8px)}to{opacity:1; transform:none}}
+.skel{color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- command bar -->
+  <header class="bar">
+    <div class="brand">
+      <div class="mark"><svg viewBox="0 0 553.74 553.74"><g>
+        <rect x="18.54" y="18.54" width="89.53" height="89.53" transform="translate(63.31 -26.22) rotate(45)"/>
+        <rect x="232.1" y="18.54" width="89.53" height="89.53" transform="translate(125.86 -177.23) rotate(45)"/>
+        <rect x="445.66" y="18.54" width="89.53" height="89.53" transform="translate(188.41 -328.24) rotate(45)"/>
+        <rect x="232.1" y="232.1" width="89.53" height="89.53" transform="translate(276.87 -114.68) rotate(45)"/>
+        <rect x="18.54" y="445.66" width="89.53" height="89.53" transform="translate(365.33 98.88) rotate(45)"/>
+        <rect x="232.1" y="445.66" width="89.53" height="89.53" transform="translate(427.88 -52.13) rotate(45)"/>
+        <rect x="445.66" y="445.66" width="89.53" height="89.53" transform="translate(490.43 -203.14) rotate(45)"/>
+      </g></svg></div>
+      <div>
+        <h1>Holmes · Observatory</h1>
+        <div class="sub">Visitor Intelligence</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="live"><span class="dot"></span><span id="liveCount">— live</span></div>
+    <div class="seg" id="seg">
+      <button data-range="24h">24H</button>
+      <button data-range="7d" class="on">7D</button>
+      <button data-range="30d">30D</button>
+    </div>
+    <div class="meta"><b id="updated">—</b><br>auto-refresh · 30s</div>
+  </header>
+
+  <!-- KPIs -->
+  <section class="grid kpis" id="kpis"></section>
+
+  <!-- traffic + funnel -->
+  <div class="sec-head"><span class="idx">01 /</span><h2>Traffic</h2><span class="rule"></span></div>
+  <section class="grid row-2">
+    <div class="card"><div class="ct">Visitors &amp; Pageviews over time</div>
+      <div id="ts" class="chart"></div>
+      <div class="legend"><span><i style="background:#5B6CFF"></i>Pageviews</span><span><i style="background:#3FE9B6"></i>Visitors</span></div>
+    </div>
+    <div class="card"><div class="ct">Conversion funnel</div><div id="funnel" class="chart"></div></div>
+  </section>
+
+  <!-- geography -->
+  <div class="sec-head"><span class="idx">02 /</span><h2>Origins</h2><span class="rule"></span></div>
+  <section class="grid row-map">
+    <div class="card"><div class="ct">Live geography · city density</div><div id="mapc"></div></div>
+    <div class="card"><div class="ct">Top countries</div><div class="blist" id="countries"></div>
+      <div class="ct" style="margin-top:18px">Top cities</div><div class="blist" id="cities"></div>
+    </div>
+  </section>
+
+  <!-- acquisition + behavior -->
+  <div class="sec-head"><span class="idx">03 /</span><h2>Behavior</h2><span class="rule"></span></div>
+  <section class="grid row-beh">
+    <div class="card"><div class="ct">Top pages</div><div class="scroll-x"><table id="pages"></table></div></div>
+    <div class="card"><div class="ct">Scroll depth reached</div><div class="blist" id="scroll"></div></div>
+    <div class="card"><div class="ct">Most-clicked elements</div><div class="blist" id="clicks"></div></div>
+  </section>
+
+  <!-- tech + sources -->
+  <div class="sec-head"><span class="idx">04 /</span><h2>Audience &amp; Acquisition</h2><span class="rule"></span></div>
+  <section class="grid row-3">
+    <div class="card"><div class="ct">Devices</div><div id="devices" class="chart sm"></div></div>
+    <div class="card"><div class="ct">Browsers</div><div class="blist" id="browsers"></div>
+      <div class="ct" style="margin-top:18px">Operating systems</div><div class="blist" id="os"></div></div>
+    <div class="card"><div class="ct">Traffic sources</div><div class="blist" id="sources"></div></div>
+  </section>
+
+  <!-- god view -->
+  <div class="sec-head"><span class="idx">05 /</span><h2>God View · Live Sessions</h2><span class="rule"></span></div>
+  <section class="grid">
+    <div class="card"><div class="ct">Recent sessions — click any row to replay the visitor's journey</div>
+      <div class="scroll-x"><table id="sessions"></table></div>
+    </div>
+  </section>
+
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var STATE = { range:'7d' }, CHARTS = {}, MAP_READY=false;
+
+  // ---------- safety + format helpers ----------
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];}); }
+  function num(n){ n=+n||0; return n>=1e6?(n/1e6).toFixed(n>=1e7?0:1)+'M':n>=1e4?(n/1e3).toFixed(0)+'k':n.toLocaleString('en-US'); }
+  function full(n){ return (+n||0).toLocaleString('en-US'); }
+  function dur(ms){ ms=+ms||0; var s=Math.round(ms/1000); if(s<60)return s+'s'; var m=Math.floor(s/60); var r=s%60; if(m<60)return m+'m '+r+'s'; var h=Math.floor(m/60); return h+'h '+(m%60)+'m'; }
+  function flag(cc){ if(!cc||cc.length!==2)return '🏳️'; try{ return cc.toUpperCase().replace(/./g,function(c){return String.fromCodePoint(127397+c.charCodeAt(0));}); }catch(_){ return '🏳️'; } }
+  function pctChip(d){ if(d==null) return '<span class="chip flat">— new</span>'; var c=d>0?'up':d<0?'down':'flat'; var a=d>0?'▲':d<0?'▼':'·'; return '<span class="chip '+c+'">'+a+' '+Math.abs(d)+'%</span>'; }
+  function fmtTime(iso,range){ var d=new Date(iso); if(isNaN(d))return esc(iso); return range==='24h' ? d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'}) : d.toLocaleDateString('en-US',{month:'short',day:'numeric'}); }
+  function clock(iso){ var d=new Date(iso); return isNaN(d)?'':d.toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}); }
+  function hms(iso){ var d=new Date(iso); return isNaN(d)?'':d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit'}); }
+  function toast(msg){ var t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(function(){t.classList.remove('show');},2600); }
+
+  function sparkline(vals){
+    var w=104,h=30; if(!vals||vals.length<2) return '';
+    var mx=Math.max.apply(null,vals), mn=Math.min.apply(null,vals), rng=(mx-mn)||1;
+    var pts=vals.map(function(v,i){ return [ (i/(vals.length-1))*w, h-2-((v-mn)/rng)*(h-5) ]; });
+    var line=pts.map(function(p,i){ return (i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1); }).join(' ');
+    var area=line+' L'+w+' '+h+' L0 '+h+' Z';
+    return '<svg class="spark" width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'">'
+      +'<defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5B6CFF" stop-opacity=".35"/><stop offset="1" stop-color="#5B6CFF" stop-opacity="0"/></linearGradient></defs>'
+      +'<path d="'+area+'" fill="url(#sg)"/><path d="'+line+'" fill="none" stroke="#7C8BFF" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>';
+  }
+
+  // ---------- bar list renderer (escaped) ----------
+  function barList(el, rows, opts){
+    opts=opts||{}; el=document.getElementById(el); if(!el) return;
+    if(!rows||!rows.length){ el.innerHTML='<div class="empty">No data yet.</div>'; return; }
+    var max=Math.max.apply(null, rows.map(function(r){return +r.value||0;}))||1;
+    el.innerHTML = rows.map(function(r){
+      var w=Math.max(2,Math.round((+r.value||0)/max*100));
+      var lead = r.flag ? '<span class="flag">'+r.flag+'</span>' : '';
+      var tag  = r.tag ? '<span class="tag">'+esc(r.tag)+'</span>' : '';
+      return '<div class="brow"><div class="fill" style="width:'+w+'%"></div>'
+        +'<div class="lbl">'+lead+tag+'<span>'+esc(r.label)+'</span></div>'
+        +'<div class="val">'+esc(r.valLabel!=null?r.valLabel:full(r.value))+'</div></div>';
+    }).join('');
+  }
+
+  // ---------- KPI tiles ----------
+  function renderKpis(d){
+    var k=d.kpis||{}, sv=(d.series||[]).map(function(x){return +x.views||0;}), vv=(d.series||[]).map(function(x){return +x.visitors||0;});
+    var tiles=[
+      {lab:'Unique Visitors', val:full(k.visitors), chip:pctChip(k.visitorsDelta), spark:sparkline(vv), hl:false},
+      {lab:'Pageviews', val:full(k.pageviews), chip:pctChip(k.pageviewsDelta), spark:sparkline(sv), hl:false},
+      {lab:'Sessions', val:full(k.sessions), chip:'', spark:'', hl:false},
+      {lab:'Avg Engaged', val:dur(k.avgEngagedMs), chip:'', spark:'', hl:false},
+      {lab:'Bounce Rate', val:(k.bounceRate!=null?k.bounceRate:0)+'%', chip:'', spark:'', hl:false},
+      {lab:'Live · 5 min', val:full(k.liveNow), chip:'<span class="chip up">●</span>', spark:'', hl:true}
+    ];
+    document.getElementById('kpis').innerHTML = tiles.map(function(t){
+      return '<div class="card kpi'+(t.hl?' hl':'')+'"><div class="lab">'+t.lab+'</div>'
+        +'<div class="num">'+t.val+'</div>'
+        +'<div class="foot">'+(t.chip||'<span></span>')+(t.spark||'<span></span>')+'</div></div>';
+    }).join('');
+  }
+
+  // ---------- ECharts ----------
+  var AX={ axisLine:{lineStyle:{color:'rgba(140,156,200,.18)'}}, axisLabel:{color:'#8B93AC',fontFamily:'IBM Plex Mono',fontSize:10}, splitLine:{lineStyle:{color:'rgba(140,156,200,.06)'}}, axisTick:{show:false} };
+  function ec(id){ if(!CHARTS[id]) CHARTS[id]=echarts.init(document.getElementById(id),null,{renderer:'canvas'}); return CHARTS[id]; }
+
+  function renderTS(d){
+    var s=d.series||[], x=s.map(function(r){return fmtTime(r.bucket,d.range);});
+    ec('ts').setOption({
+      backgroundColor:'transparent', grid:{left:44,right:14,top:14,bottom:26},
+      tooltip:{trigger:'axis', backgroundColor:'#0E1426', borderColor:'rgba(140,156,200,.2)', textStyle:{color:'#E8EBF5',fontFamily:'IBM Plex Mono',fontSize:12}},
+      xAxis:Object.assign({type:'category',data:x,boundaryGap:false},AX),
+      yAxis:Object.assign({type:'value',minInterval:1},AX),
+      series:[
+        {name:'Pageviews',type:'line',smooth:true,symbol:'none',data:s.map(function(r){return +r.views||0;}),
+         lineStyle:{color:'#5B6CFF',width:2.4}, areaStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(91,108,255,.34)'},{offset:1,color:'rgba(91,108,255,0)'}])}},
+        {name:'Visitors',type:'line',smooth:true,symbol:'none',data:s.map(function(r){return +r.visitors||0;}),
+         lineStyle:{color:'#3FE9B6',width:2}, areaStyle:{color:'rgba(63,233,182,.05)'}}
+      ]
+    });
+  }
+
+  function renderFunnel(d){
+    var f=d.funnel||{}, data=[
+      {name:'Splash',value:+f.splash||0},{name:'Login attempt',value:+f.login||0},
+      {name:'Reached site',value:+f.site||0},{name:'Contact',value:+f.contact||0}
+    ];
+    var top=data[0].value||1;
+    ec('funnel').setOption({
+      backgroundColor:'transparent',
+      tooltip:{trigger:'item', backgroundColor:'#0E1426', borderColor:'rgba(140,156,200,.2)', textStyle:{color:'#E8EBF5',fontFamily:'IBM Plex Mono'},
+        formatter:function(p){ return esc(p.name)+': <b>'+full(p.value)+'</b> ('+Math.round((p.value/top)*100)+'%)'; }},
+      series:[{type:'funnel',top:10,bottom:10,left:'6%',right:'6%',minSize:'24%',maxSize:'100%',gap:3,sort:'none',
+        label:{color:'#E8EBF5',fontFamily:'Hanken Grotesk',fontSize:12,formatter:function(p){return p.name+'  '+full(p.value);}},
+        itemStyle:{borderColor:'#0C1120',borderWidth:2},
+        color:['#7C8BFF','#5B6CFF','#4453D8','#2C3AA8'], data:data}]
+    });
+  }
+
+  function renderDevices(d){
+    var dv=(d.devices||[]).filter(function(r){return r.k!=='bot';});
+    ec('devices').setOption({
+      backgroundColor:'transparent',
+      tooltip:{trigger:'item', backgroundColor:'#0E1426', borderColor:'rgba(140,156,200,.2)', textStyle:{color:'#E8EBF5',fontFamily:'IBM Plex Mono'}, formatter:function(p){return esc(p.name)+': '+full(p.value)+' ('+p.percent+'%)';}},
+      legend:{bottom:0,textStyle:{color:'#8B93AC',fontFamily:'IBM Plex Mono',fontSize:10},icon:'circle'},
+      series:[{type:'pie',radius:['52%','76%'],center:['50%','44%'],avoidLabelOverlap:true,
+        itemStyle:{borderColor:'#0C1120',borderWidth:3},
+        label:{show:false}, color:['#5B6CFF','#3FE9B6','#F5B14C','#FF6B7E','#7C8BFF'],
+        data:dv.map(function(r){return {name:r.k,value:+r.v||0};})}]
+    });
+  }
+
+  function renderMap(d){
+    if(!MAP_READY){ return; }
+    var cities=(d.geoCities||[]).filter(function(c){return c.lat!=null&&c.lon!=null;});
+    var mx=Math.max.apply(null, cities.map(function(c){return +c.visitors||0;}).concat([1]));
+    ec('mapc').setOption({
+      backgroundColor:'transparent',
+      tooltip:{trigger:'item', backgroundColor:'#0E1426', borderColor:'rgba(140,156,200,.2)', textStyle:{color:'#E8EBF5',fontFamily:'IBM Plex Mono'},
+        formatter:function(p){ if(!p.data)return ''; return esc(p.data.name||'')+': '+full(p.data.value&&p.data.value[2])+' visitors'; }},
+      geo:{map:'world',roam:true,silent:true,itemStyle:{areaColor:'#0E1426',borderColor:'rgba(140,156,200,.18)'},
+        emphasis:{disabled:true}, scaleLimit:{min:1,max:6}},
+      series:[{type:'effectScatter',coordinateSystem:'geo',showEffectOn:'render',rippleEffect:{scale:3,brushType:'stroke'},
+        symbolSize:function(v){return 6+Math.sqrt((v[2]||1)/mx)*22;},
+        itemStyle:{color:'#3FE9B6',shadowBlur:8,shadowColor:'rgba(63,233,182,.6)'},
+        data:cities.map(function(c){return {name:(c.city||'')+', '+(c.country||''),value:[+c.lon,+c.lat,+c.visitors||0]};})}]
+    });
+  }
+
+  // ---------- tables ----------
+  function renderPages(d){
+    var rows=d.topPages||[], max=Math.max.apply(null,rows.map(function(r){return +r.views||0;}))||1;
+    var t=document.getElementById('pages');
+    t.innerHTML='<thead><tr><th>Page</th><th class="r">Views</th><th class="r">Avg dwell</th><th>Scroll</th></tr></thead><tbody>'
+      +(rows.length?rows.map(function(r){
+        var sc=Math.max(0,Math.min(100,+r.avg_scroll||0));
+        return '<tr><td class="mono">'+esc(r.page||'/')+'</td><td class="r mono">'+full(r.views)+'</td>'
+          +'<td class="r mono">'+dur(r.avg_dwell_ms)+'</td>'
+          +'<td><div style="display:flex;align-items:center;gap:8px"><div class="minibar" style="flex:1"><i style="width:'+sc+'%"></i></div><span class="mono" style="font-size:11px;color:var(--muted)">'+sc+'%</span></div></td></tr>';
+      }).join(''):'<tr><td colspan="4" class="empty">No data yet.</td></tr>')+'</tbody>';
+  }
+
+  function renderSessions(d){
+    var rows=d.sessions||[], t=document.getElementById('sessions');
+    t.innerHTML='<thead><tr><th>Started</th><th>Location</th><th>Device</th><th class="r">Views</th><th class="r">Duration</th></tr></thead><tbody id="sbody"></tbody>';
+    var body=document.getElementById('sbody');
+    if(!rows.length){ body.innerHTML='<tr><td colspan="5" class="empty">No sessions yet.</td></tr>'; return; }
+    rows.forEach(function(r){
+      var durS=Math.max(0,Math.round((new Date(r.ended)-new Date(r.started))/1000));
+      var tr=document.createElement('tr'); tr.className='srow';
+      var loc=[r.city,r.country].filter(Boolean).join(', ')||'Unknown';
+      tr.innerHTML='<td class="mono">'+esc(clock(r.started))+'</td>'
+        +'<td>'+(r.country?'<span class="flag">'+flag(r.country)+'</span> ':'')+esc(loc)+'</td>'
+        +'<td class="mono" style="font-size:12px">'+esc((r.device||'?')+' · '+(r.browser||'?'))+'</td>'
+        +'<td class="r mono">'+full(r.views)+'</td>'
+        +'<td class="r mono">'+dur(durS*1000)+'</td>';
+      tr.addEventListener('click',function(){ toggleSession(tr,r); });
+      body.appendChild(tr);
+    });
+  }
+
+  function toggleSession(tr,r){
+    if(tr.classList.contains('open')){ tr.classList.remove('open'); if(tr._d){tr._d.remove();tr._d=null;} return; }
+    tr.classList.add('open');
+    var d=document.createElement('tr'); d.className='detail';
+    d.innerHTML='<td colspan="5"><div class="tl skel" style="padding:14px 20px">Loading journey…</div></td>';
+    tr.parentNode.insertBefore(d,tr.nextSibling); tr._d=d;
+    var from=encodeURIComponent(new Date(new Date(r.started).getTime()-1000).toISOString());
+    var to=encodeURIComponent(new Date(new Date(r.ended).getTime()+1000).toISOString());
+    fetch('/api/stats?session='+encodeURIComponent(r.visitor_hash)+'&from='+from+'&to='+to,{credentials:'same-origin'})
+      .then(function(res){ if(!res.ok) throw 0; return res.json(); })
+      .then(function(j){
+        var ev=j.timeline||[]; var cell=d.querySelector('td');
+        if(!ev.length){ cell.innerHTML='<div class="tl"><div class="empty" style="padding:8px 0">No detailed events.</div></div>'; return; }
+        cell.innerHTML='<div class="tl">'+ev.map(function(e){
+          var label = e.type==='click' ? (e.el_text||e.el_datago||'element') + (e.el_href?' → '+e.el_href:'')
+            : (e.type==='scroll' ? 'scrolled '+(e.scroll_pct||0)+'%'
+            : (e.type==='engage' ? 'engaged '+dur(e.engaged_ms)
+            : (e.page||e.outcome||'')));
+          return '<div class="tev '+esc(e.type)+'"><span class="tt">'+esc(hms(e.ts))+'</span>'
+            +'<span class="ty">'+esc((e.type||'').replace('_',' '))+'</span>'
+            +'<span class="td2">'+esc(label)+'</span></div>';
+        }).join('')+'</div>';
+      })
+      .catch(function(){ var cell=d.querySelector('td'); if(cell)cell.innerHTML='<div class="tl"><div class="empty" style="padding:8px 0">Could not load journey.</div></div>'; });
+  }
+
+  // ---------- orchestration ----------
+  function render(d){
+    d.range=STATE.range;
+    document.getElementById('liveCount').textContent=(d.kpis&&d.kpis.liveNow||0)+' live';
+    document.getElementById('updated').textContent='Updated '+new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    renderKpis(d); renderTS(d); renderFunnel(d); renderDevices(d); renderMap(d);
+    barList('countries',(d.geoCountries||[]).slice(0,8).map(function(c){return {label:c.country||'??',flag:flag(c.country),value:+c.visitors||0};}));
+    barList('cities',(d.geoCities||[]).slice(0,8).map(function(c){return {label:[c.city,c.country].filter(Boolean).join(', ')||'Unknown',value:+c.visitors||0};}));
+    barList('scroll',(d.scrollDist||[]).map(function(s){return {label:'Reached '+s.bucket+'%',value:+s.count||0,valLabel:full(s.count)};}));
+    barList('clicks',(d.topClicks||[]).slice(0,10).map(function(c){return {label:c.label||'(element)',tag:c.el_datago||c.el_tag||null,value:+c.clicks||0};}));
+    barList('browsers',(d.browsers||[]).map(function(b){return {label:b.k||'unknown',value:+b.v||0};}));
+    barList('os',(d.os||[]).map(function(o){return {label:o.k||'unknown',value:+o.v||0};}));
+    barList('sources',(d.sources||[]).slice(0,10).map(function(s){return {label:s.source||'(direct)',value:+s.visitors||0};}));
+    renderPages(d); renderSessions(d);
+    document.querySelector('.wrap').classList.add('fade');
+  }
+
+  function load(){
+    fetch('/api/stats?range='+STATE.range,{credentials:'same-origin'})
+      .then(function(res){ if(res.status===401){ location.reload(); throw 0; } if(!res.ok) throw new Error('HTTP '+res.status); return res.json(); })
+      .then(function(d){ if(d.error) throw new Error(d.error); render(d); })
+      .catch(function(e){ if(e) toast('Could not load analytics: '+(e.message||e)); });
+  }
+
+  // world map registration (graceful if CDN unavailable)
+  function initMap(){
+    if(typeof echarts==='undefined') return Promise.resolve();
+    return fetch('https://cdn.jsdelivr.net/npm/echarts@4.9.0/map/json/world.json')
+      .then(function(r){ return r.json(); })
+      .then(function(geo){ echarts.registerMap('world',geo); MAP_READY=true; })
+      .catch(function(){ var m=document.getElementById('mapc'); if(m)m.innerHTML='<div class="empty">World map unavailable (offline). City data still appears in the lists.</div>'; });
+  }
+
+  // range switcher
+  document.getElementById('seg').addEventListener('click',function(e){
+    var b=e.target.closest('button[data-range]'); if(!b)return;
+    Array.prototype.forEach.call(this.children,function(c){c.classList.remove('on');});
+    b.classList.add('on'); STATE.range=b.dataset.range; load();
+  });
+
+  window.addEventListener('resize',function(){ for(var k in CHARTS) CHARTS[k].resize(); });
+
+  if(typeof echarts==='undefined'){ toast('Charts library failed to load (offline?).'); }
+  initMap().then(load);
+  setInterval(load, 30000);
+})();
+</script>
+</body>
+</html>
