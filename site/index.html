@@ -500,6 +500,8 @@ header.nav{
 .team-card:hover{border-color:var(--blue);background:#fcfdff}
 .team-avatar{width:124px;height:124px;border-radius:50%;object-fit:cover;margin:0 auto 18px;
   display:block;border:3px solid var(--blue-soft);box-shadow:0 6px 18px -10px rgba(20,30,60,.4);filter:grayscale(1)}
+.team-avatar--ph{display:flex;align-items:center;justify-content:center;background:var(--blue-soft);border-color:var(--blue);filter:none}
+.team-avatar--ph svg{width:46px;height:46px;fill:var(--blue)}
 .team-card .tname{font-size:1.18rem;font-weight:600}
 .team-card .trole{font-size:.85rem;color:var(--blue);font-weight:600;margin:5px 0 14px}
 .team-card .tbio{font-size:.9rem;color:var(--gray-2);line-height:1.58;text-align:left}
@@ -1095,13 +1097,13 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
         <div>
           <div class="eyebrow eyebrow--lg">Every AI Agent has a specific job</div>
           <h2 style="font-size:clamp(1.7rem,2.6vw,2.3rem);margin-bottom:18px">Holmes Provides a Comprehensive and Actionable Report</h2>
-          <p style="font-size:1.3rem;color:var(--gray);font-weight:500;line-height:1.4;max-width:560px">Holmes delivers facts and analyses on <span style="white-space:nowrap">Validity &amp; Patentability</span>, <span style="white-space:nowrap">Freedom to Operate &amp; Clearance</span>, <span style="white-space:nowrap">Infringers &amp; Infringement</span>, and <span style="white-space:nowrap">Commercialization &amp; Landscape</span> — in just a few minutes.</p>
-          <p style="font-size:1.02rem;color:var(--gray-2);line-height:1.5;margin-top:18px;max-width:560px">AI Agents do all the research, and prepare executive-level briefs and insights — attorneys and principals make the decisions.</p>
+          <p style="font-size:1.3rem;color:var(--gray);font-weight:500;line-height:1.4;max-width:560px">Holmes proprietary knowledge graph provides the market-leading analyses available in just a few minutes.</p>
+          <p style="font-size:1.02rem;color:var(--gray-2);line-height:1.5;margin-top:18px;max-width:560px">AI Agents do the research, prepare executive-level briefs, and provide actionable insights — attorneys and principals make the decisions.</p>
           <div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap">
             <button class="btn btn--primary btn--lg" data-go="contact">CLICK FOR DEMO</button>
             <button class="btn btn--ghost btn--lg" data-go="contact">SIGN UP NOW</button>
           </div>
-          <div class="flow">
+          <div class="flow" style="flex-direction:column">
             <div class="flow-step"><div class="n">STEP 1</div><div class="fl">Input</div><p>Input your patents and IP information.</p></div>
             <div class="flow-step"><div class="n">STEP 2</div><div class="fl">Analyze</div><p>Reviews and analyzes filed patents, scientific documents, technical information, and relevant web pages.</p></div>
             <div class="flow-step"><div class="n">STEP 3</div><div class="fl">Report</div><p>Receive a comprehensive and actionable report.</p></div>
@@ -1798,9 +1800,39 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
         </div>
 
       </div>
+
+      <div class="section-head sh-plain" data-enh="1" style="margin-top:64px">
+        <h2>Advisors</h2>
+        <p class="lead">Leading legal and intellectual property names advising HolmesAI — across patent practice, strategy, and client work.</p>
+      </div>
+      <div class="team-grid">
+
+        <div class="team-card">
+          <div class="team-avatar team-avatar--ph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></div>
+          <div class="tname">To be announced</div>
+          <div class="trole">Legal &amp; IP Advisor</div>
+          <p class="tbio">A leading voice in patent and intellectual property, advising HolmesAI on product, practice, and client outcomes.</p>
+        </div>
+
+        <div class="team-card">
+          <div class="team-avatar team-avatar--ph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></div>
+          <div class="tname">To be announced</div>
+          <div class="trole">Legal &amp; IP Advisor</div>
+          <p class="tbio">A leading voice in patent and intellectual property, advising HolmesAI on product, practice, and client outcomes.</p>
+        </div>
+
+        <div class="team-card">
+          <div class="team-avatar team-avatar--ph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></div>
+          <div class="tname">To be announced</div>
+          <div class="trole">Legal &amp; IP Advisor</div>
+          <p class="tbio">A leading voice in patent and intellectual property, advising HolmesAI on product, practice, and client outcomes.</p>
+        </div>
+
+      </div>
     </div>
   </section>
 </div>
+
 
 <!-- ============================================================
      PAGE: NEWS
