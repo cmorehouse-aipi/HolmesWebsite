@@ -150,11 +150,13 @@ header.nav{
 
 /* mobile menu */
 .mobile-menu{display:none;border-top:1px solid var(--line);background:#fff;padding:14px 0 22px}
-.mobile-menu.open{display:block}
+.mobile-menu.open{display:block;box-sizing:border-box;max-height:calc(100vh - 70px);max-height:calc(100dvh - 70px);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 .mobile-menu .wrap > a, .mobile-menu .m-sub a{
   display:block;padding:11px 6px;font-weight:500;color:var(--gray);border-bottom:1px solid var(--line)}
 .mobile-menu .m-label{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-3);padding:16px 6px 6px}
 .mobile-menu .m-sub a{padding-left:18px;color:var(--gray-2)}
+/* standalone top-level links (Q+A, Security) styled to match the grey section headers (PRODUCTS/USE CASES/etc.) */
+.mobile-menu .wrap > a{font-size:.74rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-3);padding:16px 6px 6px;border-bottom:0}
 .mobile-cta{display:flex;gap:10px;margin-top:18px;padding:0 6px}
 .mobile-cta .btn{flex:1}
 
@@ -1084,7 +1086,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
           <div class="ucase-title">Patent Attorney</div>
           <ul>
             <li>AI agents to leverage your work.</li>
-            <li>Comprehensive map for you to make the decision.</li>
+            <li>Comprehensive map to make decisions.</li>
           </ul>
         </div>
         <div class="ucase" data-go="uc-company">
@@ -1098,7 +1100,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
           <div class="ucase-title">Investors</div>
           <ul>
             <li>Do not do a deal without it.</li>
-            <li>Risks and opportunities before you write a check.</li>
+            <li>Risks and opportunities before writing a check.</li>
           </ul>
         </div>
         <div class="ucase" data-go="uc-advisors">
@@ -1141,7 +1143,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
               <div class="rm-sub">Landscape Report</div>
               <div class="rm-date" id="rmDate">June 1, 2026</div>
               <div class="rm-divider"></div>
-              <p class="rm-desc">Holmes Technology + Legal Judgement = Better Client Outcomes</p>
+              <p class="rm-desc">HolmesAI Technology + Legal Judgement = Better Outcomes</p>
             </div>
             <div class="rm-toc" style="flex:1;display:flex;flex-direction:column">
               <div class="rm-row"><span class="rm-n">01</span><span class="rm-t">Executive Summary</span><span class="rm-chev"></span></div>
@@ -1163,17 +1165,14 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
     <div class="wrap">
 
       <!-- Product panels — 5 products, conformed to overview deck -->
-      <div class="fpanel fpanel--big" data-fpanel>
+      <div class="fpanel" data-fpanel>
         <div class="fp-text">
           <div class="fp-eyebrow">Commercialization</div>
           <h3>Landscape</h3>
           <ul class="fp-list">
-            <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Input any form of tech description.</span></li>
-            <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Accurately identify differentiators.</span></li>
-            <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Dynamic ideation of higher value features.</span></li>
-            <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Visualize market concentration.</span></li>
-            <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Track commercialization trends.</span></li>
-            <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Contextualize IP landscape.</span></li>
+            <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Market map of patents and IP.</span></li>
+            <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Dynamic ideation of high value features.</span></li>
+            <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Isolate differentiators and identify trends.</span></li>
           </ul>
         </div>
         <div class="fp-stage"><div class="img-ph"><svg viewBox="0 0 553.74 553.74" class="hm"><g class="hm-fill"><rect x="18.54" y="18.54" width="89.53" height="89.53" transform="translate(63.31 -26.22) rotate(45)"/><rect x="232.1" y="18.54" width="89.53" height="89.53" transform="translate(125.86 -177.23) rotate(45)"/><rect x="445.66" y="18.54" width="89.53" height="89.53" transform="translate(188.41 -328.24) rotate(45)"/><rect x="18.54" y="232.1" width="89.53" height="89.53" transform="translate(214.32 36.33) rotate(45)"/><rect x="232.1" y="232.1" width="89.53" height="89.53" transform="translate(276.87 -114.68) rotate(45)"/><rect x="445.66" y="232.1" width="89.53" height="89.53" transform="translate(339.42 -265.69) rotate(45)"/><rect x="18.54" y="445.66" width="89.53" height="89.53" transform="translate(365.33 98.88) rotate(45)"/><rect x="232.1" y="445.66" width="89.53" height="89.53" transform="translate(427.88 -52.13) rotate(45)"/><rect x="445.66" y="445.66" width="89.53" height="89.53" transform="translate(490.43 -203.14) rotate(45)"/><rect x="53.87" y="117.18" width="18.88" height="105.82"/><rect x="53.87" y="330.74" width="18.88" height="105.82"/><rect x="480.99" y="117.18" width="18.88" height="105.82"/><rect x="480.99" y="330.74" width="18.88" height="105.82"/><rect x="117.18" y="267.43" width="105.82" height="18.88"/><rect x="330.74" y="267.43" width="105.82" height="18.88"/></g></svg><span>Image Placeholder</span></div></div>
@@ -1239,7 +1238,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
       <div class="section-head sh-plain" data-enh="1">
         <div class="eyebrow">the Most Robust AI Engine for Patent Analysis</div>
         <h2>You Input. We answer.</h2>
-        <p class="lead">HolmesAI technology + Legal Judgement = Better Client Outcomes. Just input the
+        <p class="lead">HolmesAI Technology + Legal Judgement = Better Outcomes. Just input the
           patent data and other IP information you already have and the Holmes engine goes to work.</p>
       </div>
       <div class="statband-glow">
@@ -1417,7 +1416,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
       </div>
       <ul class="fp-list" style="margin-top:26px;max-width:680px">
           <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">AI agents to leverage your work.</span></li>
-          <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Comprehensive map for you to make the decision.</span></li>
+          <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Comprehensive map to make decisions.</span></li>
           <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Structured and fully cited reports which you can use internally or pass to clients.</span></li>
         </ul>
       <div style="margin-top:36px"><button class="btn btn--primary btn--lg" data-go="contact">CLICK FOR DEMO</button></div>
@@ -1453,7 +1452,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
       </div>
       <ul class="fp-list" style="margin-top:26px;max-width:680px">
           <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Do not do a deal without it.</span></li>
-          <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Risks and opportunities before you write a check.</span></li>
+          <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Risks and opportunities before writing a check.</span></li>
           <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt">Expert reports ready within minutes instead of weeks.</span></li>
         </ul>
       <div style="margin-top:36px"><button class="btn btn--primary btn--lg" data-go="contact">CLICK FOR DEMO</button></div>
@@ -1603,7 +1602,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
     <div class="wrap">
       <div class="section-head sh-plain" data-enh="1">
         <h2>Holmes Proprietary Clearance Score (“HCS”)&nbsp;<sup style="font-size:.55em;line-height:0">©</sup></h2>
-        <p class="lead" style="max-width:none">HCS estimates the risk that a technology infringes existing patent claims; a higher value indicates greater risk. The most relevant live claims are decomposed into elements, weighted by enforcement importance, and scored deterministically against the technology.</p>
+        <p class="lead" style="max-width:none">HCS estimates the risk that a technology infringes existing patent claims. A higher score indicates a greater freedom to operate because the technology is less likely to infringe. Scores are divided into three categories: 0-25 indicates low likelihood of clearance; 26-75 indicates moderate likelihood of clearance; 76-100 indicates high likelihood of clearance. Based on internal analysis to date, HCS is accurate to + or - 10 points.</p>
       </div>
       <div class="prose" style="max-width:880px">
         <h3>How it works</h3>
@@ -1616,7 +1615,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
           <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt"><strong>Medium risk —</strong> coverage above a fixed threshold, though not every element.</span></li>
           <li><span class="fic"><svg viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" transform="rotate(45 12 12)"/></svg></span><span class="ftxt"><strong>Low risk —</strong> coverage below the threshold, or no element present.</span></li>
         </ul>
-        <p><strong>Orientation: higher indicates greater risk.</strong> The headline HCS reflects the single most threatening in-force claim. A score near 100 indicates that a live claim's elements are all matched with high confidence; a score near 0 indicates that the closest live claims diverge from the technology at issue. Expired, abandoned, and pending claims are excluded from the headline and flagged separately for attorney review, so the number reflects only enforceable risk.</p>
+        <p><strong>Orientation: higher indicates greater freedom to operate.</strong> The headline HCS reflects the single most threatening in-force claim. A score near 100 indicates that the closest live claims diverge from the technology at issue; a score near 0 indicates that a live claim's elements are all matched with high confidence. Expired, abandoned, and pending claims are excluded from the headline and flagged separately for attorney review, so the number reflects only enforceable risk.</p>
       </div>
       <div style="margin-top:36px"><button class="btn btn--primary btn--lg" data-go="contact">Download Whitepaper</button></div>
     </div>
@@ -1631,7 +1630,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
     <div class="wrap">
       <div class="section-head sh-plain" data-enh="1">
         <h2>Holmes Proprietary Patentability Score (“HPS”)&nbsp;<sup style="font-size:.55em;line-height:0">©</sup></h2>
-        <p class="lead" style="max-width:none">HPS estimates the likelihood that a disclosure would be granted; a higher value indicates a stronger likelihood of patentability. Each feature is scored against the closest prior art, the system simulates the principal grounds of rejection, and the worst credible threat determines the score.</p>
+        <p class="lead" style="max-width:none">HPS estimates the likelihood that a disclosure will be determined by the USPTO to be patentable. A higher value indicates a stronger likelihood of patentability. Scores are divided into three categories: 0-25 indicates low likelihood of patentability; 26-75 indicates moderate likelihood of patentability; 76-100 indicates high likelihood of patentability. Based on internal analysis to date, HPS is accurate to + or - 10 points.</p>
       </div>
       <div class="prose" style="max-width:880px">
         <h3>How it works</h3>
@@ -1658,7 +1657,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
     <div class="wrap">
       <div class="section-head sh-plain" data-enh="1">
         <h2>Holmes Proprietary Validity Score (“HVS”)&nbsp;<sup style="font-size:.55em;line-height:0">©</sup></h2>
-        <p class="lead" style="max-width:none">HVS estimates the likelihood that a granted claim survives a validity challenge; a higher value indicates a stronger likelihood of validity. The system constructs the easiest invalidity argument against the claim and reports its inverse: a claim that resists attack scores higher.</p>
+        <p class="lead" style="max-width:none">HVS estimates the likelihood that a granted claim survives a validity challenge. A higher value indicates a stronger likelihood of validity. Scores are divided into three categories: 0-25 indicates low likelihood of validity; 26-75 indicates moderate likelihood of validity; 76-100 indicates high likelihood of validity. Based on internal analysis to date, HVS is accurate to + or - 10 points.</p>
       </div>
       <div class="prose" style="max-width:880px">
         <h3>How it works</h3>
@@ -1846,7 +1845,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 <!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="wrap">
-    <div class="foot-statement">HolmesAI technology + Legal Judgement = Better Client Outcomes</div>
+    <div class="foot-statement">HolmesAI Technology + Legal Judgement = Better Outcomes</div>
     <div class="foot-top">
       <div class="foot-brand">
         <div class="wordmark"><span class="h">Holmes</span><span class="ai">AI</span></div>
@@ -1859,6 +1858,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
       <div class="foot-col">
         <h5>Platform</h5>
         <a data-go="qa">Q+A</a>
+        <a data-go="methodology">Methodology</a>
         <a data-go="security">Security</a>
       </div>
       <div class="foot-col">
