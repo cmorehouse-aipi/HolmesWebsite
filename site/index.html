@@ -133,6 +133,8 @@ header.nav{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;
 }
 .btn--primary{background:var(--blue);color:#fff}
+.more-detail-panel[hidden]{display:none}
+.more-detail-panel{margin-top:8px}
 .btn--primary:hover{background:var(--blue-hover)}
 .btn--ghost{background:#fff;color:var(--gray);border-color:var(--line-2)}
 .btn--ghost:hover{border-color:var(--blue);color:var(--blue)}
@@ -1604,6 +1606,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
         <h2>Holmes Proprietary Clearance Score (“HCS”)&nbsp;<sup style="font-size:.55em;line-height:0">©</sup></h2>
         <p class="lead" style="max-width:none">HCS estimates the risk that a technology infringes existing patent claims. A higher score indicates a greater freedom to operate because the technology is less likely to infringe. Scores are divided into three categories: 0-25 indicates low likelihood of clearance; 26-75 indicates moderate likelihood of clearance; 76-100 indicates high likelihood of clearance. Based on internal analysis to date, HCS is accurate to + or - 10 points.</p>
       </div>
+      <div style="margin-top:22px"><button type="button" class="btn btn--primary btn--lg more-detail-toggle" aria-expanded="false">More Detail</button></div>
+      <div class="more-detail-panel" hidden>
       <div class="prose" style="max-width:880px">
         <h3>How it works</h3>
         <p>The Clearance Score inverts the shared engine: rather than testing whether prior art reads on a claim, it tests whether another party's live claims read on the input technology.</p>
@@ -1618,6 +1622,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
         <p><strong>Orientation: higher indicates greater freedom to operate.</strong> The headline HCS reflects the single most threatening in-force claim. A score near 100 indicates that the closest live claims diverge from the technology at issue; a score near 0 indicates that a live claim's elements are all matched with high confidence. Expired, abandoned, and pending claims are excluded from the headline and flagged separately for attorney review, so the number reflects only enforceable risk.</p>
       </div>
       <div style="margin-top:36px"><button class="btn btn--primary btn--lg" data-go="contact">Download Whitepaper</button></div>
+      </div>
     </div>
   </section>
 </div>
@@ -1632,6 +1637,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
         <h2>Holmes Proprietary Patentability Score (“HPS”)&nbsp;<sup style="font-size:.55em;line-height:0">©</sup></h2>
         <p class="lead" style="max-width:none">HPS estimates the likelihood that a disclosure will be determined by the USPTO to be patentable. A higher value indicates a stronger likelihood of patentability. Scores are divided into three categories: 0-25 indicates low likelihood of patentability; 26-75 indicates moderate likelihood of patentability; 76-100 indicates high likelihood of patentability. Based on internal analysis to date, HPS is accurate to + or - 10 points.</p>
       </div>
+      <div style="margin-top:22px"><button type="button" class="btn btn--primary btn--lg more-detail-toggle" aria-expanded="false">More Detail</button></div>
+      <div class="more-detail-panel" hidden>
       <div class="prose" style="max-width:880px">
         <h3>How it works</h3>
         <p>The Patentability Score takes a pre-filing disclosure, treats its features as the elements of a single synthetic claim, and runs the full prior-art machinery against it.</p>
@@ -1645,6 +1652,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
         <p><strong>Orientation: higher indicates greater patentability.</strong> A high HPS means the prior art does not block the invention.</p>
       </div>
       <div style="margin-top:36px"><button class="btn btn--primary btn--lg" data-go="contact">Download Whitepaper</button></div>
+      </div>
     </div>
   </section>
 </div>
@@ -1659,6 +1667,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
         <h2>Holmes Proprietary Validity Score (“HVS”)&nbsp;<sup style="font-size:.55em;line-height:0">©</sup></h2>
         <p class="lead" style="max-width:none">HVS estimates the likelihood that a granted claim survives a validity challenge. A higher value indicates a stronger likelihood of validity. Scores are divided into three categories: 0-25 indicates low likelihood of validity; 26-75 indicates moderate likelihood of validity; 76-100 indicates high likelihood of validity. Based on internal analysis to date, HVS is accurate to + or - 10 points.</p>
       </div>
+      <div style="margin-top:22px"><button type="button" class="btn btn--primary btn--lg more-detail-toggle" aria-expanded="false">More Detail</button></div>
+      <div class="more-detail-panel" hidden>
       <div class="prose" style="max-width:880px">
         <h3>How it works</h3>
         <p>The Validity Score adopts the challenger's perspective and asks what the easiest route to invalidation would be.</p>
@@ -1674,6 +1684,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
         <p><strong>Orientation: higher indicates greater validity.</strong> HVS is the inverse of the easiest-invalidity strength: a claim that any single reference anticipates scores low, while a claim onto which no prior art maps, even in combination, scores high.</p>
       </div>
       <div style="margin-top:36px"><button class="btn btn--primary btn--lg" data-go="contact">Download Whitepaper</button></div>
+      </div>
     </div>
   </section>
 </div>
@@ -1893,11 +1904,26 @@ function go(id){
   document.getElementById('mobileMenu').classList.remove('open');
   document.querySelectorAll('.nav-drop').forEach(function(d){d.classList.remove('open');});
   window.scrollTo({top:0,behavior:'instant' in window?'instant':'auto'});
-  if(el){ refreshReveals(el); }
+  if(el){
+    el.querySelectorAll('.more-detail-panel').forEach(function(p){p.setAttribute('hidden','');});
+    el.querySelectorAll('.more-detail-toggle').forEach(function(b){b.setAttribute('aria-expanded','false'); b.textContent='More Detail';});
+    refreshReveals(el);
+  }
 }
 document.addEventListener('click',function(e){
   var t=e.target.closest('[data-go]');
   if(t){e.preventDefault(); go(t.dataset.go);}
+});
+
+/* ---------- "More Detail" collapse toggle (method pages) ---------- */
+document.addEventListener('click',function(e){
+  var btn=e.target.closest('.more-detail-toggle');
+  if(!btn) return;
+  var panel=btn.parentNode.nextElementSibling;
+  if(!panel||!panel.classList.contains('more-detail-panel')) return;
+  var open=panel.hasAttribute('hidden');
+  if(open){ panel.removeAttribute('hidden'); btn.setAttribute('aria-expanded','true'); btn.textContent='Less Detail'; }
+  else{ panel.setAttribute('hidden',''); btn.setAttribute('aria-expanded','false'); btn.textContent='More Detail'; }
 });
 
 /* ---------- Nav dropdowns (About click-toggle; Products opens on hover + click navigates) ---------- */
