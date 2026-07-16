@@ -446,6 +446,8 @@ header.nav{
 .prose p{color:var(--gray-2);font-size:1.05rem;margin-bottom:18px}
 .prose p strong{color:var(--gray);font-weight:600}
 #page-methodology .section-head .lead,#page-method-hcs .section-head .lead,#page-method-hps .section-head .lead,#page-method-hvs .section-head .lead{max-width:880px !important}
+#page-team .section-head .lead{max-width:none;font-size:.98rem;white-space:nowrap}
+@media(max-width:1180px){#page-team .section-head .lead{white-space:normal}}
 #page-methodology .prose h3,#page-method-hcs .prose h3,#page-method-hps .prose h3,#page-method-hvs .prose h3{color:var(--blue)}
 
 /* Why list */
@@ -983,7 +985,6 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
           <a data-go="company">Company</a>
           <a data-go="team">Team</a>
           <a data-go="news">News</a>
-          <a data-go="careers">Careers</a>
           <a data-go="contact">Contact</a>
         </div>
       </div>
@@ -1026,7 +1027,6 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
         <a data-go="company">Company</a>
         <a data-go="team">Team</a>
         <a data-go="news">News</a>
-        <a data-go="careers">Careers</a>
         <a data-go="contact">Contact</a>
       </div>
       <div class="mobile-cta">
@@ -1290,7 +1290,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
         <p class="lead" style="max-width:none">Assess how well a patent's claims hold up against the prior art — a fast, evidence-backed read on novelty and obviousness.</p>
       </div>
       <div class="uc">
-        <h3><span class="uc-tag">How it works</span> From claims to a defensible validity read</h3>
+        <h3><span class="uc-tag">How it works</span> Defensible, element-by-element, validity read</h3>
         <div class="uc-grid">
           <div><div class="lbl">Input</div><p>A granted patent or application — claims, features, and supporting technical detail.</p></div>
           <div><div class="lbl">What Holmes does</div><p>Compares each claim element against all forms of prior art worldwide, runs stringent novelty and obviousness analysis with specific attention paid to the inventive aspect, and surfaces the closest references.</p></div>
@@ -1697,8 +1697,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
       <div class="prose" style="max-width:780px">
         <p>HolmesAI was founded in 2026 and is based just outside of Washington D.C. We provide domain-specific AI
           solutions for patents and IP to attorneys, investors, companies, and advisors.</p>
-        <p>Holmes three co-founders bring complementary core expertise - patents and patent-tech, engineering and
-          databases, and business building and leading companies.</p>
+        <p>Holmes three co-founders bring complementary core expertise - entrepreneur and business building, patent
+          law and patent-tech, engineering and databases.</p>
         <p>Holmes three core values guide our product, business, and growth - customer-always, true excellence, and
           most useful.</p>
         <p><strong>Customer-Always</strong> &mdash; As founders who have worked in senior leadership roles in major
@@ -1706,8 +1706,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
         <p><strong>True Excellence</strong> &mdash; We founded the company to be the best at one thing. Stay focused
           to deliver excellence. Best product. Best service. Keep working to achieve it and maintain it.</p>
         <p><strong>Most Useful</strong> &mdash; The technology we use is complex, and the subject matter of patents
-          and intellectual property is intensely detailed. So we strive to make our product easy to use. We aim to
-          take the robust and make it digestible and actionable.</p>
+          and intellectual property is intensely detailed. We strive to make our product easy to use. We aim to
+          take the complicated and make it digestible and actionable.</p>
       </div>
     </div>
   </section>
@@ -1721,7 +1721,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
     <div class="wrap">
       <div class="section-head sh-plain" data-enh="1">
         <h2>Founding Team</h2>
-        <p class="lead">The leadership building HolmesAI — across business, technology, and patent law.</p>
+        <p class="lead">HolmesAI co-founders bring complementary expertise: entrepreneur and business building, patent law and patent-tech, engineering and databases.</p>
       </div>
       <div class="team-grid">
 
@@ -1787,29 +1787,11 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 <div class="page" id="page-news">
   <section class="section">
     <div class="wrap">
-      <div class="section-head sh-plain" data-enh="1"><h2>News &amp; announcements</h2></div>
+      <div class="section-head sh-plain" data-enh="1"><h2>News &amp; Announcements</h2></div>
       <div class="simple-card">
         <h3>Coming soon</h3>
-        <p>News and announcements will appear here. <span class="todo">TODO: do not invent press coverage</span></p>
+        <p>News and announcements will appear here.</p>
       </div>
-    </div>
-  </section>
-</div>
-
-<!-- ============================================================
-     PAGE: CAREERS
-     ============================================================ -->
-<div class="page" id="page-careers">
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head sh-plain" data-enh="1"><h2>Join HolmesAI</h2>
-        <p class="lead">Near-term roles below are draft / future openings. <span class="todo">TODO: confirm roles &amp; timing</span></p>
-      </div>
-      <div class="simple-card"><h3>CEO candidate</h3><p>Senior leader to drive HolmesAI to scale.</p><div class="role-meta"><span>Draft role</span><span>Leadership</span></div></div>
-      <div class="simple-card"><h3>Head of Sales</h3><p>Build and lead enterprise sales for high-stakes IP customers.</p><div class="role-meta"><span>Draft role</span><span>Go-to-market</span></div></div>
-      <div class="simple-card"><h3>Product / AI engineering</h3><p>Build the agentic platform for patents and IP.</p><div class="role-meta"><span>Draft role</span><span>Engineering</span></div></div>
-      <div class="simple-card"><h3>Patent / IP experts</h3><p>Bring deep patent and IP domain expertise to the product.</p><div class="role-meta"><span>Draft role</span><span>Domain</span></div></div>
-      <div class="simple-card"><h3>Customer success / solutions</h3><p>Help customers get value from Holmes reports.</p><div class="role-meta"><span>Draft role</span><span>Customer</span></div></div>
     </div>
   </section>
 </div>
@@ -1873,7 +1855,6 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
         <a data-go="company">Company</a>
         <a data-go="team">Team</a>
         <a data-go="news">News</a>
-        <a data-go="careers">Careers</a>
         <a data-go="contact">Contact</a>
       </div>
     </div>
@@ -1948,12 +1929,12 @@ document.getElementById('contactSubmit').addEventListener('click',function(){
 
 /* ---------- Q+A ---------- */
 var QA=[
-  ['Use Cases: Who uses Holmes and how do they use it?','Holmes customers are attorneys, investors, companies, and advisors. Holmes empowers its customers by unlocking new capabilities, allowing for deeper analysis, and creating major efficiencies. Customers use Holmes by uploading relevant information in existing format (e.g., whitepaper, slide deck, tech spec, or patent information) and Holmes generates comprehensive reports.'],
-  ['Results: What makes Holmes the best product in the market?','Holmes provides the most comprehensive patent analysis on the market. By leveraging over 1 trillion datapoints in a proprietary knowledge graph, Holmes outcompetes other solutions in terms of accuracy, speed, and breadth of analysis. Further, Holmes requires no system integration, no setup hassle, and no specialized training.'],
+  ['Use Cases: Who uses Holmes and how do they use it?','Holmes customers are attorneys, companies, investors, and advisors. 80% of the S+P value is intangible, and Holmes empowers its customers by unlocking new capabilities and creating major efficiencies. HolmesAI is easy to buy and easy to use. It is a simple search with your existing information and requires no system integration. Customers upload relevant information in whatever format (e.g., slide deck, tech spec, patent information) and HolmesAI generates comprehensive reports and actionable insights in minutes.'],
+  ['Results: What makes Holmes the best product in the market?','We believe Holmes provides the most comprehensive patent analysis on the market. Some other legal AI agents review similar comprehensive data, but the Holmes difference is how we analyze that data in our proprietary knowledge graph. Holmes was specific-built by patent-tech entrepreneurs, patent attorneys, and patent knowledgeable engineers.'],
   ['Product: What type of patent and IP work does Holmes do for me?','Holmes is a custom-built, domain-specific AI tool for patents and IP. You input information. We provide answers. Find out who\u2019s using your patents. Defend against infringement letters. See available white-spaces. Avoid future lawsuits. Holmes offers comprehensive data and actionable analysis on: (1) Validity, (2) Infringement, (3) Patentability, (4) Freedom to Operate, and (5) Commercial Landscape.'],
-  ['Legal AI: Why do I need Holmes if I have general legal AI solutions such as Harvey or Legora?','Harvey and Legora are ideal for automating most legal work. Patents and IP are a different skill set, and require specialized solutions. Packages like Solve Intelligence and Stilta are good options for basic patent work, yet lack comprehensive analysis and actionable insight. Holmes\u2019 comprehensive analysis includes defensive products such as Freedom to Operate, Infringers, and Landscape, along with offensive products such as Validity, Patentability, and Landscape. Holmes provides quantifiable, actionable insights via the Holmes Proprietary Clearance Score, Holmes Proprietary Patentability Score, and the Holmes Proprietary Validity Score.'],
+  ['Legal AI: Why do I need Holmes if I have general legal AI solutions such as Harvey or Legora?','Harvey and Legora are ideal for automating most legal work. Patents and IP are a highly technical area of law that requires specialized solutions - Holmes is the most comprehensive product for patent and IP analysis. Holmes does not require any system integration, so Holmes works for any firm that has either Harvey or Legora as their basic AI legal workflow.'],
   ['Attorneys: How does Holmes complement traditional patent attorney work?','Patent professionals can use Holmes to immediately obtain incredibly accurate validity, patentability, FTO/clearance, and infringer search reports. Results are provided in formats that allow professionals to easily drill down on the data to check accuracy and otherwise obtain a deeper understanding of their clients\u2019 positions on these issues. Professionals can access other unique results that facilitate a far deeper understanding of the tech and patent landscape to guide other related insights relevant to investors, R&amp;D and product development, and business development.'],
-  ['Competitors: What other patent specific AI companies operate and what do they do?','Other patent specific AI focuses on automating either: (1) traditional patent professional tasks such as drafting patent specifications, filings, and office action responses; or (2) validity, patentability, FTO/clearance, and infringer search and reporting. Holmes is not designed to replace patent professionals, and instead uses its expertise in knowledge graphs, data science, Agentic AI, and patents to ensure more comprehensive and accurate analyses on validity, patentability, FTO/clearance, and infringer searching than competitors. No other patent specific AI provides a landscape product. The Holmes Landscape provides a market map of patents and IP, allows for dynamic ideation of high-value features, isolates differentiators, and identifies trends.'],
+  ['Competitors: What other patent specific AI companies operate and what do they do?','Like most markets, various leading companies in patent law AI focus on solving different customer problems. Companies such as Solve and Patlytics focus on assisting patent attorney workflow by automating drafting patent specifications, filings, and office action responses. These companies as well as Stilta focus on assisting patent attorney searches for validity, patentability, FTO, and infringers. These existing companies in the market are about increased efficiency, and lowering costs.</p><p>Holmes focus is providing the highest value patent and related tech information - comprehensive reports, deep insights, and actionable analyses. Holmes provides its unique Market Landscape product - intelligent market map, commercialization potential, and white space indicators - which illuminates a 360&deg; view of the patent/IP relevant landscape. We believe Holmes equips its customers to best play defense and offense in legal and business decisions regarding patents and related tech issues. Holmes also powers increased efficiency - and in addition it enables deeper understanding and increased capabilities.'],
   ['Compatibility: Does Holmes interact with other AI platforms (ChatGPT, Claude, Harvey, Legora)?','Users can augment AI platforms already integrated into workflows by incorporating Holmes\u2019 best-in-class analysis and search precision. These platforms provide value with low-level automation, whereas Holmes provides the expert-level deep analysis. Holmes interacts with frontier LLM based platforms to benefit from the tasks that they are good at, such as distilling large amounts of data and summarizing documents \u2014 always under enterprise terms under which customer data is not retained or used for training. However, Holmes is unique in relying on its proprietary knowledge graph, data science, and Agentic AI technology to combine and extend the LLM platform results to provide its more accurate patent related reports and additional unique functionalities relevant to patents and tech.'],
   ['Security: What are Holmes features and protocols to ensure security?','Holmes protects user data in encrypted, password protected files unique to each user. No users can access or see other users\u2019 information. TLS encryption, strong password enforcement, and periodic password rotations are enforced. Only authorized users can access a given workspace\u2019s results or conclusions. MFA is available to customers requiring higher levels of security. SOC 2 examination and ISO 27001 certification are in process ahead of enterprise rollout.'],
   ['Privacy: Can Holmes or others in my firm access my searches and work product?','No, every user has a unique sandbox for their work. Users can export screenshots or conclusion files as PDFs, but no other user has access or visibility into another user\u2019s sandbox.'],
