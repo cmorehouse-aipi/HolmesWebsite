@@ -70,7 +70,7 @@ const SESSIONS_CTE = `
 
 export default async function handler(req, res) {
   if (!basicAuthOk(req)) {
-    res.setHeader('WWW-Authenticate', 'Basic realm="Holmes Analytics", charset="UTF-8"');
+    res.setHeader('WWW-Authenticate', 'Basic realm="Leif Analytics", charset="UTF-8"');
     return res.status(401).json({ error: 'Authentication required' });
   }
 

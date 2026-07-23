@@ -1,2 +1,2 @@
-# HolmesWebsite
-The frontpage for HolmesLegalAI
+# LeifWebsite
+The frontpage for LeifLegalAI

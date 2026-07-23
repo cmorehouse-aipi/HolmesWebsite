@@ -76,7 +76,7 @@ function parseUA(ua) {
 
 function dailySalt() {
   const day = new Date().toISOString().slice(0, 10); // UTC YYYY-MM-DD → 24h rotation
-  return `${process.env.ANALYTICS_SALT || 'holmes-default-salt'}:${day}`;
+  return `${process.env.ANALYTICS_SALT || 'leif-default-salt'}:${day}`;
 }
 function visitorHash(ip, ua) {
   return crypto.createHash('sha256')

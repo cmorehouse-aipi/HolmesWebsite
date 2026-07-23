@@ -4,7 +4,7 @@
 // AUTH_SECRET signs the cookie so it cannot be forged.
 import crypto from 'node:crypto';
 
-const COOKIE = 'holmes_auth';
+const COOKIE = 'leif_auth';
 const MAX_AGE_SEC = 60 * 60 * 24 * 7; // 7 days
 
 function b64url(buf) {

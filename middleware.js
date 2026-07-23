@@ -15,7 +15,7 @@ export const config = {
   matcher: ['/site', '/site/:path*', '/dashboard', '/dashboard/:path*', '/api/stats'],
 };
 
-const COOKIE = 'holmes_auth';
+const COOKIE = 'leif_auth';
 const enc = new TextEncoder();
 
 function b64urlToBytes(s) {
@@ -106,7 +106,7 @@ export default async function middleware(request) {
     if (await basicAuthOk(request)) return next();
     return new Response('Authentication required', {
       status: 401,
-      headers: { 'WWW-Authenticate': 'Basic realm="Holmes Analytics", charset="UTF-8"' },
+      headers: { 'WWW-Authenticate': 'Basic realm="Leif Analytics", charset="UTF-8"' },
     });
   }
 
