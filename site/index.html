@@ -541,6 +541,8 @@ header.nav{
 .form .row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .form-ok{display:none;background:rgba(30,158,87,.1);border:1px solid rgba(30,158,87,.4);color:#157a42;
   border-radius:10px;padding:14px 16px;font-size:.92rem;font-weight:500;margin-top:6px}
+.form-err{display:none;background:rgba(200,42,42,.08);border:1px solid rgba(200,42,42,.4);color:#b3261e;
+  border-radius:10px;padding:14px 16px;font-size:.92rem;font-weight:500;margin-top:6px}
 
 /* Final CTA band */
 .cta-band{background:linear-gradient(135deg,var(--blue-deep),var(--blue) 120%);color:#fff;border-radius:var(--radius);
@@ -1802,8 +1804,10 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
           </div>
         </div>
         <div class="row"><label for="c-msg">Message</label><textarea id="c-msg" placeholder="How can we help?"></textarea></div>
+        <input type="text" id="c-website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
         <button class="btn btn--primary btn--lg" id="contactSubmit">Submit</button>
-        <div class="form-ok" id="contactOk">Thanks — this is a draft form. Submission handling is a TODO before launch.</div>
+        <div class="form-ok" id="contactOk">Thanks — your request is on its way. We'll be in touch shortly.</div>
+        <div class="form-err" id="contactErr"></div>
       </div>
     </div>
   </section>
@@ -1902,10 +1906,69 @@ document.getElementById('hamburger').addEventListener('click',function(){
   document.getElementById('mobileMenu').classList.toggle('open');
 });
 
-/* ---------- Contact form (draft only) ---------- */
-document.getElementById('contactSubmit').addEventListener('click',function(){
-  document.getElementById('contactOk').style.display='block';
-});
+/* ---------- Contact form → Web3Forms (routes to tech-admin@aipisolutions.com) ---------- */
+(function(){
+  // Public Web3Forms access key. Create it at https://web3forms.com using
+  // tech-admin@aipisolutions.com as the destination, then paste the key below.
+  // It is a public submit-only key (safe in client code); the destination inbox
+  // is bound to the key on Web3Forms' side, not stored here.
+  var WEB3FORMS_ACCESS_KEY = 'c66ba0bc-1707-4d64-9666-4c2ff10605b2';
+
+  var btn = document.getElementById('contactSubmit');
+  if(!btn) return;
+  var okEl  = document.getElementById('contactOk');
+  var errEl = document.getElementById('contactErr');
+  function val(id){ var el=document.getElementById(id); return el ? el.value.trim() : ''; }
+  function showErr(msg){ if(errEl){ errEl.textContent=msg; errEl.style.display='block'; } }
+
+  btn.addEventListener('click', function(){
+    if(okEl)  okEl.style.display='none';
+    if(errEl) errEl.style.display='none';
+
+    // Honeypot: real users never fill this hidden field — accept silently, send nothing.
+    if(val('c-website')){ if(okEl) okEl.style.display='block'; return; }
+
+    var email = val('c-email');
+    if(!email){ showErr('Please enter your email so we can reply.'); return; }
+    if(WEB3FORMS_ACCESS_KEY === 'YOUR_WEB3FORMS_ACCESS_KEY'){
+      showErr('This form isn’t connected yet. Please try again later.'); return;
+    }
+
+    var name = val('c-name');
+    var payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: 'Leif site — ' + (val('c-reason') || 'Contact') + (name ? ' — ' + name : ''),
+      from_name: name || 'Leif website',
+      name: name,
+      email: email,
+      company: val('c-company'),
+      role: val('c-role'),
+      reason: val('c-reason'),
+      message: val('c-msg')
+    };
+
+    var orig = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Sending…';
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if(data && data.success){
+        if(okEl) okEl.style.display='block';
+        ['c-name','c-email','c-company','c-role','c-msg'].forEach(function(id){
+          var el=document.getElementById(id); if(el) el.value='';
+        });
+      } else {
+        showErr('Sorry — your message didn’t go through. Please try again in a moment.');
+      }
+    })
+    .catch(function(){ showErr('Network error — please try again in a moment.'); })
+    .then(function(){ btn.disabled=false; btn.textContent=orig; });
+  });
+})();
 
 /* ---------- Q+A ---------- */
 var QA=[
@@ -1921,7 +1984,7 @@ var QA=[
   ['Privacy: Can Leif or others in my firm access my searches and work product?','No, every user has a unique sandbox for their work. Users can export screenshots or conclusion files as PDFs, but no other user has access or visibility into another user\u2019s sandbox.'],
   ['Data: What happens to my data?','Your data is kept securely encrypted on disk, only existing in the open for the duration of a user session. On request, a user can download all of their data and delete it from the Leif servers. We never train our models on user data, and nothing is shared or exposed publicly unless the user exports the data themselves.'],
   ['Implementation: Do I use Leif myself or do I need a dedicated employee to use it?','Leif requires no specialized training. Report generation is intuitive and does not require a specialty in patents; it is built to be utilized across a broad range of users \u2014 not just patent attorneys, but also companies, investors, and advisors. The interactive reports are structured so that users are presented with increasing amounts of data complexity, and can choose which one best suits their needs.'],
-  ['Demo: How do I learn more information on the product?','Click the DEMO button or email DEMO@LeifLegalAI.com. We will respond promptly to schedule a demo at your convenience \u2014 as early as the next day.']
+  ['Demo: How do I learn more information on the product?','Click the DEMO button to request a demo. We will respond promptly to schedule a demo at your convenience \u2014 as early as the next day.']
 ];
 var qaList=document.getElementById('qaList');
 function renderQA(data){
