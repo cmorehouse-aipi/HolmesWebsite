@@ -1,21 +1,22 @@
-// Edge Middleware — host-aware auth.
+// Edge Middleware.
 //
-//   • Public site (leif-ai.com, www.leif-ai.com, the raw *.vercel.app deployment,
-//     and previews): NO visitor password. The root path is rewritten to the site
-//     page so the clean URL serves the marketing site directly; /site/* is public.
-//   • Gated preview (demo.leif-ai.com — the only host in GATED_HOSTS): keeps the
-//     visitor login. '/' shows the login splash and /site/* requires the signed
-//     cookie (invalid/expired → redirect to the splash). Uses AUTH_USER /
-//     AUTH_PASSWORD / AUTH_SECRET, unchanged. Add hosts to GATED_HOSTS to gate them.
-//
-// Host-independent (both public and gated hosts):
+//   • The visitor site is PUBLIC on every host this project serves (leif-ai.com,
+//     www.leif-ai.com, the raw *.vercel.app deployment, previews). '/' is
+//     rewritten to the site page so the clean URL serves the marketing site;
+//     /site/* is public. There is no visitor password.
+//   • demo.leif-ai.com is a SEPARATE application (hosted on AWS) with its own
+//     auth. It is NOT served by this Vercel project. Do not add it as a domain
+//     here — leif-ai.com is on Vercel nameservers, so doing so would pull the
+//     subdomain's DNS onto Vercel and break the real demo app.
 //   • /dashboard(/*), /api/stats → HTTP Basic Auth (the analytics admin login),
-//     credentials from DASHBOARD_USER / DASHBOARD_PASS.
+//     credentials from DASHBOARD_USER / DASHBOARD_PASS. Enforced on every host.
 //   • /api/track is intentionally NOT matched here, so it stays public — any
 //     visitor must be able to POST analytics events without credentials.
 //
-// Cookie verification uses Web Crypto (HMAC SHA-256) with the same AUTH_SECRET
-// the login function signs with.
+// The signed-cookie visitor gate below is dormant (GATED_HOSTS is empty). To
+// password-gate a host THIS project serves, add it to GATED_HOSTS; it then gets
+// the login splash + cookie session (AUTH_USER / AUTH_PASSWORD / AUTH_SECRET, via
+// /api/login). Cookie verification uses Web Crypto (HMAC SHA-256) with AUTH_SECRET.
 import { next, rewrite } from '@vercel/edge';
 
 export const config = {
@@ -23,8 +24,10 @@ export const config = {
 };
 
 const COOKIE = 'leif_auth';
-// Hosts that keep the visitor password. Everything else serves the site publicly.
-const GATED_HOSTS = new Set(['demo.leif-ai.com']);
+// Hosts THIS project serves that should require the visitor login. Empty = the
+// site is public everywhere. (demo.leif-ai.com is a separate external app — see
+// the note above — so it is NOT listed here.)
+const GATED_HOSTS = new Set();
 const enc = new TextEncoder();
 
 function b64urlToBytes(s) {
