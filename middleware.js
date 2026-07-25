@@ -1,21 +1,30 @@
-// Edge Middleware — two independent auth domains:
-//   • /site, /site/*        → signed-cookie session (the visitor login).
-//                             Invalid/expired → redirect to the splash (/).
-//   • /dashboard(/*), /api/stats → HTTP Basic Auth (the analytics admin login),
-//                             credentials from DASHBOARD_USER / DASHBOARD_PASS.
+// Edge Middleware — host-aware auth.
 //
-// /api/track is intentionally NOT matched here, so it stays public — any
-// visitor must be able to POST analytics events without credentials.
+//   • Public site (leif-ai.com, www.leif-ai.com, the raw *.vercel.app deployment,
+//     and previews): NO visitor password. The root path is rewritten to the site
+//     page so the clean URL serves the marketing site directly; /site/* is public.
+//   • Gated preview (demo.leif-ai.com — the only host in GATED_HOSTS): keeps the
+//     visitor login. '/' shows the login splash and /site/* requires the signed
+//     cookie (invalid/expired → redirect to the splash). Uses AUTH_USER /
+//     AUTH_PASSWORD / AUTH_SECRET, unchanged. Add hosts to GATED_HOSTS to gate them.
+//
+// Host-independent (both public and gated hosts):
+//   • /dashboard(/*), /api/stats → HTTP Basic Auth (the analytics admin login),
+//     credentials from DASHBOARD_USER / DASHBOARD_PASS.
+//   • /api/track is intentionally NOT matched here, so it stays public — any
+//     visitor must be able to POST analytics events without credentials.
 //
 // Cookie verification uses Web Crypto (HMAC SHA-256) with the same AUTH_SECRET
 // the login function signs with.
-import { next } from '@vercel/edge';
+import { next, rewrite } from '@vercel/edge';
 
 export const config = {
-  matcher: ['/site', '/site/:path*', '/dashboard', '/dashboard/:path*', '/api/stats'],
+  matcher: ['/', '/site', '/site/:path*', '/dashboard', '/dashboard/:path*', '/api/stats'],
 };
 
 const COOKIE = 'leif_auth';
+// Hosts that keep the visitor password. Everything else serves the site publicly.
+const GATED_HOSTS = new Set(['demo.leif-ai.com']);
 const enc = new TextEncoder();
 
 function b64urlToBytes(s) {
@@ -47,6 +56,12 @@ function readCookie(header, name) {
     if (i > -1 && part.slice(0, i) === name) return part.slice(i + 1);
   }
   return null;
+}
+
+function hostOf(request) {
+  // Prefer the forwarded host (the public domain the visitor actually hit).
+  const h = request.headers.get('x-forwarded-host') || request.headers.get('host') || '';
+  return h.split(',')[0].split(':')[0].trim().toLowerCase();
 }
 
 // --- /site cookie session ---------------------------------------------------
@@ -100,8 +115,9 @@ async function basicAuthOk(request) {
 
 export default async function middleware(request) {
   const { pathname } = new URL(request.url);
+  const host = hostOf(request);
 
-  // Dashboard UI + its data API → Basic Auth (separate from the site session).
+  // Dashboard UI + its data API → Basic Auth on every host (public and gated).
   if (pathname === '/dashboard' || pathname.startsWith('/dashboard/') || pathname === '/api/stats') {
     if (await basicAuthOk(request)) return next();
     return new Response('Authentication required', {
@@ -110,7 +126,16 @@ export default async function middleware(request) {
     });
   }
 
-  // /site/* → signed-cookie session (unchanged behavior).
+  // Public hosts: no visitor password. Serve the site at the clean root URL;
+  // /site/* is served directly.
+  if (!GATED_HOSTS.has(host)) {
+    if (pathname === '/') return rewrite(new URL('/site/index.html', request.url));
+    return next();
+  }
+
+  // Gated host (demo.leif-ai.com): '/' is the login splash; /site/* needs the cookie.
+  if (pathname === '/') return next();
+
   const secret = process.env.AUTH_SECRET;
   const token = readCookie(request.headers.get('cookie'), COOKIE);
   if (secret && await valid(token, secret)) return next();
