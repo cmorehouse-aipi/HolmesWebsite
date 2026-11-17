@@ -454,6 +454,22 @@ header.nav{
 @media(max-width:1180px){#page-team .section-head .lead{white-space:normal}}
 #page-methodology .prose h3,#page-method-lcs .prose h3,#page-method-lps .prose h3,#page-method-lvs .prose h3{color:var(--blue)}
 
+/* Legal pages (Privacy Policy, Terms of Service) */
+.legal{max-width:880px}
+.legal .legal-meta{font-size:.92rem;color:var(--gray-3);margin-bottom:26px}
+.legal h3{font-size:1.22rem;margin:40px 0 14px}
+.legal h4{font-size:1.02rem;font-weight:600;color:var(--gray);margin:24px 0 10px}
+.legal ul{margin:0 0 18px 22px;color:var(--gray-2);font-size:1.05rem}
+.legal li{margin-bottom:8px}
+.legal li strong{color:var(--gray);font-weight:600}
+.legal a{color:var(--blue);text-decoration:underline;cursor:pointer}
+.legal .legal-table{overflow-x:auto;margin:0 0 22px}
+.legal table{width:100%;border-collapse:collapse;font-size:.95rem;min-width:520px}
+.legal th,.legal td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line);color:var(--gray-2)}
+.legal th{color:var(--gray);font-weight:600;border-bottom:1.5px solid var(--gray-3)}
+.form-note{font-size:.85rem;color:var(--gray-3);margin-top:12px}
+.form-note a{color:var(--blue);text-decoration:underline;cursor:pointer}
+
 /* Why list */
 .why-list{display:grid;grid-template-columns:1fr 1fr;gap:14px 30px;margin-top:8px}
 .why-list li{list-style:none;display:flex;gap:12px;align-items:flex-start;color:var(--gray-2);font-size:1rem;padding:8px 0}
@@ -1815,6 +1831,225 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
         <button class="btn btn--primary btn--lg" id="contactSubmit">Submit</button>
         <div class="form-ok" id="contactOk">Thanks — your request is on its way. We'll be in touch shortly.</div>
         <div class="form-err" id="contactErr"></div>
+        <p class="form-note">We use the details you submit to respond to your request. They are delivered to us by our form provider, Web3Forms. See our <a data-go="privacy" href="#privacy">Privacy Policy</a>.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     PAGE: PRIVACY POLICY
+     ============================================================ -->
+<div class="page" id="page-privacy">
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head sh-plain" data-enh="1"><h2>Privacy Policy</h2></div>
+      <div class="prose legal">
+        <p class="legal-meta">Effective date: November 17, 2026</p>
+
+        <p>This Privacy Policy explains what personal information Actionable Intellectual Property Intelligence LLC
+          (&ldquo;Leif&rdquo;, &ldquo;LeifAI&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) collects through the website
+          at leif-ai.com (the &ldquo;Site&rdquo;), how we use it, who we share it with, and the choices you have.</p>
+        <p>This policy covers the Site only. Leif products and services are covered by the agreements and notices
+          provided with them.</p>
+
+        <h3>1. Information we collect</h3>
+
+        <h4>Information you give us</h4>
+        <p>When you submit the contact form we receive your name, email address, company, role, reason for contact,
+          and message.</p>
+
+        <h4>Information collected automatically</h4>
+        <p>The Site uses our own first-party analytics. It sets no cookies and stores nothing on your device. For each
+          visit we record:</p>
+        <ul>
+          <li>the pages and sections you view, the links and buttons you click (including their labels and position),
+            how far you scroll, and how long you stay;</li>
+          <li>the referring page and any campaign tags in the link you followed;</li>
+          <li>your device type, browser, operating system, language, time zone, and screen size;</li>
+          <li>page-load performance timings;</li>
+          <li>your approximate location (country, region, city, and approximate coordinates) derived from your IP
+            address; and</li>
+          <li>a hashed visitor identifier computed from your IP address and browser type. It changes every day, so
+            it cannot be used to follow you from one day to the next.</li>
+        </ul>
+        <p>We use your IP address only to derive the location and the identifier, and we do not store it. We never
+          record what you type into form fields. The Site does not use advertising trackers or third-party
+          analytics.</p>
+
+        <h3>2. How we use information</h3>
+        <ul>
+          <li><strong>To respond to you</strong> &mdash; to answer contact requests and arrange demonstrations.</li>
+          <li><strong>To operate and improve the Site</strong> &mdash; to measure how the Site is used, diagnose
+            problems, and plan improvements.</li>
+          <li><strong>To keep the Site secure</strong> &mdash; to detect and prevent abuse.</li>
+          <li><strong>To meet legal obligations</strong> and to establish, exercise, or defend legal claims.</li>
+        </ul>
+        <p>We do not sell personal information, and we do not share it for cross-context behavioral advertising.</p>
+        <p>Where the GDPR or UK GDPR applies, our legal bases are our legitimate interests in operating, securing,
+          and improving the Site and in responding to business enquiries; taking steps at your request before
+          entering a contract; compliance with legal obligations; and your consent where we ask for it.</p>
+
+        <h3>3. Who we share information with</h3>
+        <p>We share information with the service providers that help us run the Site:</p>
+        <div class="legal-table">
+          <table>
+            <thead><tr><th>Provider</th><th>What it does for us</th></tr></thead>
+            <tbody>
+              <tr><td>Vercel</td><td>Hosts the Site</td></tr>
+              <tr><td>Neon</td><td>Stores Site analytics</td></tr>
+              <tr><td>Web3Forms</td><td>Delivers contact-form submissions to our email inbox</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>We may also disclose information when the law requires it, to protect the rights, property, or safety of
+          Leif or others, or as part of a merger, acquisition, financing, or sale of assets.</p>
+
+        <h3>4. How long we keep information</h3>
+        <div class="legal-table">
+          <table>
+            <thead><tr><th>Information</th><th>Retention</th></tr></thead>
+            <tbody>
+              <tr><td>Site analytics</td><td>90 days</td></tr>
+              <tr><td>Contact-form submissions</td><td>As long as needed to handle your request and maintain our business relationship</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>5. Security</h3>
+        <p>Connections to the Site are encrypted (TLS), and access to Site analytics is restricted to authorized
+          personnel. No system is completely secure, and we cannot guarantee the security of information.</p>
+
+        <h3>6. International transfers</h3>
+        <p>We are based in the United States. If you use the Site from another country, your information will be
+          transferred to and processed in the United States.</p>
+
+        <h3>7. Your rights and choices</h3>
+        <p>Depending on where you live, you may have the right to:</p>
+        <ul>
+          <li>know what personal information we hold about you and receive a copy of it;</li>
+          <li>correct inaccurate information;</li>
+          <li>delete your information;</li>
+          <li>restrict or object to certain processing, and withdraw consent you have given;</li>
+          <li>receive your information in a portable format; and</li>
+          <li>not be treated unfairly for exercising any of these rights.</li>
+        </ul>
+        <p>To exercise a right, email us at the address in Section 11. We will verify your request and respond within
+          the time the law requires. You may use an authorized agent, and we may ask for proof of their
+          authority.</p>
+        <p><strong>California and other US states.</strong> We do not sell personal information and do not share it
+          for cross-context behavioral advertising, so there is nothing to opt out of.</p>
+        <p><strong>European Economic Area, United Kingdom, and Switzerland.</strong> Actionable Intellectual Property
+          Intelligence LLC is the controller of the personal information described in this policy. You have the
+          right to complain to your local data protection authority.</p>
+
+        <h3>8. Do Not Track and Global Privacy Control</h3>
+        <p>The Site honors both signals. If your browser sends a Do Not Track or Global Privacy Control signal, our
+          analytics record nothing about your visit.</p>
+
+        <h3>9. Children</h3>
+        <p>The Site is intended for business and professional audiences. It is not directed to anyone under 18, and
+          we do not knowingly collect personal information from children.</p>
+
+        <h3>10. Changes to this policy</h3>
+        <p>We may update this policy from time to time. We will post the updated version here and change the
+          effective date above.</p>
+
+        <h3>11. Contact us</h3>
+        <p>Actionable Intellectual Property Intelligence LLC<br>
+          Email: <a href="mailto:tech-admin@aipisolutions.com">tech-admin@aipisolutions.com</a></p>
+        <p>See also our <a data-go="terms" href="#terms">Terms of Service</a>.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     PAGE: TERMS OF SERVICE
+     ============================================================ -->
+<div class="page" id="page-terms">
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head sh-plain" data-enh="1"><h2>Terms of Service</h2></div>
+      <div class="prose legal">
+        <p class="legal-meta">Effective date: November 17, 2026</p>
+
+        <p>These Terms of Service (&ldquo;Terms&rdquo;) are an agreement between you and Actionable Intellectual
+          Property Intelligence LLC (&ldquo;Leif&rdquo;, &ldquo;LeifAI&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;).
+          They govern your use of the website at leif-ai.com (the &ldquo;Site&rdquo;). By using the Site you agree to
+          these Terms. If you do not agree, do not use the Site.</p>
+        <p>These Terms cover the Site only. Access to and use of Leif products and services is governed by a
+          separate agreement between you and us.</p>
+
+        <h3>1. Informational content only</h3>
+        <ul>
+          <li>The Site describes Leif and its products for general information. Content on the Site may change
+            without notice and may not be complete or current.</li>
+          <li>Reports, scores, charts, and figures shown on the Site are illustrative examples. Where marked as
+            fictitious or sample, they do not describe real patents, companies, or results.</li>
+          <li>Nothing on the Site is an offer or a commitment to provide any product, feature, or outcome.</li>
+        </ul>
+
+        <h3>2. Not legal advice</h3>
+        <p>Leif is not a law firm. Nothing on the Site is legal advice or a freedom-to-operate, infringement,
+          validity, or patentability opinion, and using the Site does not create an attorney-client relationship
+          with us. Consult a qualified professional before making legal or business decisions.</p>
+
+        <h3>3. Using the Site</h3>
+        <p>You agree not to:</p>
+        <ul>
+          <li>use the Site unlawfully, or to infringe or violate anyone&rsquo;s rights;</li>
+          <li>copy, scrape, or republish substantial parts of the Site without our written consent;</li>
+          <li>interfere with the operation or security of the Site, or attempt to gain unauthorized access to it;
+            or</li>
+          <li>submit false, misleading, or unlawful information through the contact form.</li>
+        </ul>
+
+        <h3>4. Intellectual property</h3>
+        <p>We and our licensors own the Site and its content, including the text, graphics, and design and the Leif
+          and LeifAI names and marks. You may view the Site and share links to it. No other rights are granted.
+          Other company and product names mentioned on the Site belong to their owners and are used for
+          identification only.</p>
+
+        <h3>5. Information you send us</h3>
+        <p>Our <a data-go="privacy" href="#privacy">Privacy Policy</a> explains how we handle personal information
+          collected through the Site. Please do not send confidential information through the contact form. If you
+          send us feedback or suggestions, we may use them without restriction or obligation to you.</p>
+
+        <h3>6. Third-party links</h3>
+        <p>The Site may link to third-party websites. We do not control them and are not responsible for their
+          content or practices.</p>
+
+        <h3>7. Disclaimers</h3>
+        <p>THE SITE AND ITS CONTENT ARE PROVIDED &ldquo;AS IS&rdquo; AND &ldquo;AS AVAILABLE&rdquo;. TO THE FULLEST
+          EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING
+          WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT, AND ACCURACY. WE
+          DO NOT WARRANT THAT THE SITE WILL BE UNINTERRUPTED OR ERROR-FREE.</p>
+
+        <h3>8. Limitation of liability</h3>
+        <p>TO THE FULLEST EXTENT PERMITTED BY LAW, WE WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL,
+          CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR FOR LOST PROFITS, REVENUE, DATA, OR GOODWILL, ARISING FROM
+          YOUR USE OF THE SITE OR RELIANCE ON ITS CONTENT. OUR TOTAL LIABILITY FOR ALL CLAIMS RELATING TO THE SITE
+          WILL NOT EXCEED US $100. THESE LIMITS DO NOT APPLY TO LIABILITY THAT CANNOT BE LIMITED BY LAW.</p>
+
+        <h3>9. Governing law and venue</h3>
+        <p>These Terms are governed by the laws of the State of Delaware, without regard to its conflict-of-laws
+          rules. The state and federal courts located in Delaware have exclusive jurisdiction over any dispute
+          relating to these Terms or the Site, and you and we consent to jurisdiction and venue in those courts.</p>
+
+        <h3>10. Changes and general terms</h3>
+        <ul>
+          <li><strong>Changes.</strong> We may update these Terms. We will post the updated version here and change
+            the effective date. Continuing to use the Site after a change means you accept it.</li>
+          <li><strong>Severability and waiver.</strong> If a provision is unenforceable, the rest remains in effect.
+            A failure to enforce a provision is not a waiver of it.</li>
+          <li><strong>Entire agreement.</strong> These Terms and the Privacy Policy are the entire agreement between
+            you and us about the Site.</li>
+        </ul>
+
+        <h3>11. Contact us</h3>
+        <p>Actionable Intellectual Property Intelligence LLC<br>
+          Email: <a href="mailto:tech-admin@aipisolutions.com">tech-admin@aipisolutions.com</a></p>
       </div>
     </div>
   </section>
@@ -1852,7 +2087,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
     <div class="foot-bottom">
       <div class="sm">© 2026 LeifAI. All rights reserved.</div>
       <div class="links">
-        <a>LinkedIn</a><a>X</a><a>Privacy</a><a>Terms</a>
+        <a>LinkedIn</a><a>X</a><a data-go="privacy" href="#privacy">Privacy Policy</a><a data-go="terms" href="#terms">Terms of Service</a>
       </div>
     </div>
     <div class="foot-disclaimer">LeifAI provides informational analysis to support professional judgment. It does
@@ -1872,6 +2107,8 @@ function go(id){
   document.getElementById('mobileMenu').classList.remove('open');
   document.querySelectorAll('.nav-drop').forEach(function(d){d.classList.remove('open');});
   window.scrollTo({top:0,behavior:'instant' in window?'instant':'auto'});
+  // Keep the address bar in step with the page so every page (incl. #privacy, #terms) is linkable.
+  if(el){ try{ history.replaceState(null,'', id==='home' ? location.pathname+location.search : '#'+id); }catch(_){} }
   if(el){
     el.querySelectorAll('.more-detail-panel').forEach(function(p){p.setAttribute('hidden','');});
     el.querySelectorAll('.more-detail-toggle').forEach(function(b){b.setAttribute('aria-expanded','false'); b.textContent='More Detail';});
@@ -2274,7 +2511,16 @@ document.querySelectorAll('.nov-row .nv').forEach(function(el,i){
   }, {threshold:0.4});
 })();
 
-
+/* ---------- Deep links: open the page named in the URL hash (e.g. /#privacy, /#terms) ---------- */
+(function(){
+  function fromHash(){
+    var h=location.hash.replace(/^#/,'');
+    var el=h && document.getElementById('page-'+h);
+    if(el && !el.classList.contains('active')) window.go(h);
+  }
+  fromHash();
+  window.addEventListener('hashchange', fromHash);
+})();
 
 </script>
 <!-- LeifAI analytics — cookieless, privacy-respecting, non-invasive. Reads only; never alters the page or the go() router. -->
